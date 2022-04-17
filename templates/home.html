@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
-
 {% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'home.js') }}"></script>
 
 <div class="container">
     <div class = "row">
@@ -11,17 +12,16 @@
     </div>
     <div class = "row">
         <div class = "col-md-4">
-            <img src="{{url_for('static', filename='1.png')}}" alt="">
-            <button>Table Setting</button>
+            <img src="{{url_for('static', filename='1.png')}}" alt="Basic Rules">
+            <button id="bsc-rul-btn">Basic Rules</button>
         </div>
         <div class = "col-md-4">
-            <img src="{{url_for('static', filename='2.png')}}" alt="">
-            <button>Basic Rules</button>
+            <img src="{{url_for('static', filename='2.png')}}" alt="Table Setting">
+            <button id="tbl-set-btn">Table Setting</button>
         </div>
         <div class = "col-md-4">
-            <img src="{{url_for('static', filename='3.png')}}" alt="">
-            <button>Quiz</button>
-            
+            <img src="{{url_for('static', filename='3.png')}}" alt="Quiz">
+            <button id="qz-btn">Quiz</button>
         </div>
     </div>
 </div>
