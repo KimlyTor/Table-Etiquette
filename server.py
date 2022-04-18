@@ -4,6 +4,11 @@ from flask import Response, request, jsonify
 app = Flask(__name__)
 
 # ROUTES
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> michelle_merge
 bsc_rul_data = {
     "1":{
         "rule_id": "1",
@@ -57,6 +62,7 @@ bsc_rul_data = {
 }
 
 
+<<<<<<< HEAD
 table_settings = {
     "1":{
         "title": "Table Setting",
@@ -80,6 +86,9 @@ table_settings = {
 
 
 # ROUTES
+=======
+>>>>>>> michelle
+>>>>>>> michelle_merge
 @app.route('/')
 def welcome():
     return render_template('home.html')
