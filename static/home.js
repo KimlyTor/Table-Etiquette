@@ -6,7 +6,7 @@ $(document).ready(function(){
     });
 
     $('#table-setting-btn').click(function(){
-        window.location.replace("http://127.0.0.1:5000/table_setting");
+        window.location.replace("http://127.0.0.1:5000/table_setting/1");
     });
 
     $('#quiz-btn').click(function(){
