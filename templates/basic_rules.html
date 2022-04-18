@@ -1,5 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    Basic Rules page
+
+<script>
+    let data = {{ data|tojson }}
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'basic_rules.js') }}"></script>
+
+<div class="container">
+    <div id="title" class="row">
+    </div>
+    <div id="content" class="row">
+    </div>
+    <div id="reaction" class="row">
+    </div>
+</div>
+
 {% endblock %}

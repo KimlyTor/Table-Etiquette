@@ -1,8 +1,7 @@
 
-
 $(document).ready(function(){
     $('#basic-rule-btn').click(function(){
-        window.location.replace("http://127.0.0.1:5000/basic_rules");
+        window.location.replace("http://127.0.0.1:5000/basic_rules/1");
     });
 
     $('#table-setting-btn').click(function(){
@@ -14,3 +13,4 @@ $(document).ready(function(){
        
     });
 })
+
