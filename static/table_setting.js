@@ -4,8 +4,37 @@ $(document).ready(function(){
 
     // replace image with text for slide 1
     if(id==1){
-        $("img").replaceWith("<p>"+table_setting["text"]+"</p>");
+        $("img").replaceWith("<p class='text-center'>"+table_setting["text"]+"</p>");
     }
+
+    if(id==3){
+        $("#buttons_at_bottom").replaceWith(
+            '<div class="row justify-content-around my-5" id="buttons_at_bottom">'+
+                '<div class="col-sm-auto">'+
+                    '<button id="back-btn">Back</button>'+
+                '</div>'+
+                '<div class="col-sm-auto">'+
+                    '<button id="done-btn">Done</button>'+
+                '</div>'+
+                '<div class="col-sm-auto">'+
+                    '<button id="quiz-btn">Quiz</button>'+
+                '</div>'+
+            '</div>'
+        )
+
+        $('#done-btn').click(function(){
+            window.location.replace("http://127.0.0.1:5000/");
+            
+        })
+
+        $('#quiz-btn').click(function(){
+            window.location.replace("http://127.0.0.1:5000/quiz");
+            
+        })
+
+
+    }
+    
 
     //redirect to next page when click next
     $('#next-btn').click(function(){
