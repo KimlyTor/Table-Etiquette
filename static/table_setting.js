@@ -1,7 +1,4 @@
-
-
 $(document).ready(function(){
-
     // replace image with text for slide 1
     if(id==1){
         $("img").replaceWith("<p class='text-center'>"+table_setting["text"]+"</p>");
@@ -34,6 +31,10 @@ $(document).ready(function(){
 
 
     }
+
+    $('.napkin').click(function(){
+        this.focus();
+    })
     
 
     //redirect to next page when click next
@@ -53,5 +54,20 @@ $(document).ready(function(){
             window.location.replace("http://127.0.0.1:5000/");
         }
     })
+
+   
+    $('img').mapster({
+        fillColor: '13A0E8',
+        fillOpacity: 0.1,
+        stroke: true,
+        strokeColor: '138CE8',
+        strokeWidth: 1,
+        strokeOpacity: 5,
+        showToolTip: true,
+        areas: [{
+            key:"fork-1",
+            toolTip: "Hello World!"
+        }],
+    });
 
 })
