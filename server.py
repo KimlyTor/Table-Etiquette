@@ -4,6 +4,7 @@ from flask import Response, request, jsonify
 app = Flask(__name__)
 
 # ROUTES
+user_score = {}
 
 bsc_rul_data = {
     "1": {
