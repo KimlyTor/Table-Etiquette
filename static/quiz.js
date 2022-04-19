@@ -1,19 +1,35 @@
+function SaveRecord(record){
+    $.ajax({
+        type: "POST",
+        url: "save_record",
+        dataType : "json",
+        contentType: "application/json; charset=utf-8",
+        data : JSON.stringify(record),
+        success: function(result){
+            console.log(result['data'])
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            console.log(request)
+            console.log(status)
+            console.log(error)
+        }
+    })
+}
 
 function VerifyAnswer(id, n, answer_index){
     // verify answer
     var none_checked = true;
-    // var correct_img = $("<img class='flag-img>").attr("src", '/statics/imgs/btn_correct.png').attr('alt', "correct");
-    // var wrong_img = $("<img class='flag-img>").attr("src", '/statics/imgs/btn_wrong.png').attr('alt', "correct");
     var ans = $(`#${answer_index}`);
 
-    if (ans.prop("checked")){
+    if (ans.prop("checked")){ // Answer is correct
         none_checked = false;
         console.log($(`#div-${answer_index}`));
         $(`#div-${answer_index}`).append("<span class='highlight-green'> is the right answer!</span>");
+        SaveRecord({"id": id, "score": 1});
     }
-    else{
-        $(`#div-${answer_index}`).append("<span class='highlight-red'> is the right answer!</span>");
-
+    else{ // Answer is wrong
+        $(`#div-${answer_index}`).append("<span class='highlight-green'> is the right answer!</span>");
         for (let c = 0; c < n; c++) {
             var input = $(`#${id}-${c}`);
             if(input.prop("checked")){
@@ -21,6 +37,7 @@ function VerifyAnswer(id, n, answer_index){
                 $(`#div-${id}-${c}`).append("<span class='highlight-red'> is not the right answer!</span>")
             }
         }
+        SaveRecord({"id": id, "score": 0});
     }
 
     return none_checked;
@@ -34,6 +51,26 @@ $(document).ready(function(){
     var list_choices = data['choices'];
     var answer = data['answer'];
     var answer_index= null;
+
+
+    if(id == 0){
+        var q_text = $("<h5>").html(`${question}`);
+        $("#question").append(q_text);
+         
+        var ul = $('<ul>');
+        for (const i of list_choices) {
+            var li = $('<li>').text(i);
+            ul.append(li)
+        }
+        $("#content").append(ul);
+
+        var start_btn = $("<button>").attr("id", "start_btn").text("Start Quiz");
+        start_btn.click(function(e){
+            window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
+        });
+        $("#reaction").append(submit_btn, start_btn);
+        return;
+    }
 
     // write question
     var q_text = $("<h5>").html(`Question ${id}: ${question}`);

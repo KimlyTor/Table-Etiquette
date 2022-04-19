@@ -29,3 +29,7 @@
 .highlight-green{
     color: green;
 }
+
+.whole-line{
+    display: block !important;
+}
