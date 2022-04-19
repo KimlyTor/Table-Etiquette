@@ -80,46 +80,40 @@ table_settings = {
 
 quiz_data = {
     "1": {
-        "image": "/static/img/quiz1_img",
+        "img": [],
+        "question": "Test Your Knowledge. How much do you know?",
+        "choices":["5 question", "1 drag and drop"],
+        "answer": None
+    },
+    "1": {
+        "img": ["/static/imgs/quiz1_img"],
         "question": "Where do you put the napkin when you leave the table for bathroom break?",
-        "choice1": "Bring it with you",
-        "choice2": "On the plate",
-        "choice3": "On your lap",
-        "choice4": "On the chair"
+        "choices":["Bring it with you", "On the plate", "On your lap", "On the chair"],
+        "answer": "On the chair"
     },
     "2": {
-        "image": "/static/img/quiz2_img",
+        "img": ["/static/imgs/quiz2_img"],
         "question": "What's the golden rule of the table setting?",
-        "choice1": "Pick any for or spoon available",
-        "choice2": "Big utensils first, small utensils second",
-        "choice3": "Start at the outside and work your way in",
-        "choice4": "There is no rule"
+        "choices":["Pick any for or spoon available",  "Big utensils first, small utensils second", "Start at the outside and work your way in", "There is no rule"],
+        "answer": "Start at the outside and work your way in",
     },
     "3": {
-        "image": "/static/img/quiz3_img",
+        "img": ["/static/imgs/quiz3_img"],
         "question": "You are served fried calamari as an appetizer, which utensil do you use?",
-        "choice1": "A",
-        "choice2": "B",
-        "chocie3": "C",
-        "choice4": "D",
-        "choice5": "E",
-        "choice6": "None of the above"
-    }
+        "choices": ["A", "B", "C", "D","E", "None of the above"],
+        "answer":  "A"
+    },
     "4": {
-        "image": "/static/img/quiz4_img",
+        "img": ["/static/imgs/quiz4_img"],
         "question": "You and your friends are in a restaurant having dinner torgether and your're really hungry. All of your food have been sered except the order for Abby who is seating next to you. What is the polite way to behave in this situation?",
-        "choice1": "Start eating first",
-        "choice2": "Ask Abby if it's okay to start eating first",
-        "choice3": "Wait for Abby's dish to be served"
+        "choices": [ "Start eating first",  "Ask Abby if it's okay to start eating first", "Wait for Abby's dish to be served"],
+        "answer": "Wait for Abby's dish to be served"
     },
     "5": {
+        "img": ["/static/imgs/quiz5_img1", "/static/imgs/quiz5_img2", "/static/imgs/quiz5_img3"],
         "question": "Which fork is which? Choose the correct labels.",
-        "image1": "/static/img/quiz5_img1",
-        "image2": "/static/img/quiz5_img2",
-        "image3": "/static/img/quiz5_img3",
-        "choice1": "A",
-        "choice2": "B",
-        "choice3": "C"
+        "choices": ["A", "B", "C"],
+        "answer": "B"
     }
 }
 
@@ -143,7 +137,6 @@ def table_setting(table_setting_id):
 
 @app.route('/quiz/<id>')
 def quiz(id):
-
     return render_template('quiz.html', data=quiz_data, id=id)
 
 # AJAX FUNCTIONS
