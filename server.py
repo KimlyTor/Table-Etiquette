@@ -67,13 +67,13 @@ table_settings = {
     "2": {
         "title": "Click on Each Item to See Its Name",
         "text": "n/a",
-        "image": "/static/img/table_setting_1.png",
+        "image": "/static/imgs/table_setting_1.png",
         "next_lesson": "3"
     },
     "3": {
         "title": "Table Setting Review",
         "text": "n/a",
-        "image": "/static/img/table_setting_2.png",
+        "image": "/static/imgs/table_setting_2.png",
         "next_lesson": "end"
     }
 }
@@ -124,8 +124,6 @@ quiz_data = {
 }
 
 # ROUTES
-
-
 @app.route('/')
 def welcome():
     return render_template('home.html')

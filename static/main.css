@@ -1,4 +1,4 @@
-img {
+.content img {
     width: 80%;
 }
 
@@ -9,3 +9,7 @@ img {
 .resize-img{
     width: 50%;
 }
+
+/* .map-image img{
+    width: auto;
+} */
