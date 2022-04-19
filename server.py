@@ -4,6 +4,7 @@ from flask import Response, request, jsonify
 app = Flask(__name__)
 
 # ROUTES
+
 bsc_rul_data = {
     "1": {
         "rule_id": "1",
@@ -11,7 +12,6 @@ bsc_rul_data = {
         "img": ["1.png"],
         "text": ["Keep your elbows off the table. Putting elbows on the table is considered rude.",
                  "Don’t put your bags, sun glasses, phones, and other personal belonging on the table"],
-        "style": "a",
         "next_rule": "2"
     },
     "2": {
@@ -80,40 +80,52 @@ table_settings = {
 
 quiz_data = {
     "1": {
+        "question_id": "1",
         "img": [],
-        "question": "Test Your Knowledge. How much do you know?",
+        "question": "Test Your Knowledge. <br> How much do you know?",
         "choices":["5 question", "1 drag and drop"],
-        "answer": None
-    },
-    "1": {
-        "img": ["/static/imgs/quiz1_img"],
-        "question": "Where do you put the napkin when you leave the table for bathroom break?",
-        "choices":["Bring it with you", "On the plate", "On your lap", "On the chair"],
-        "answer": "On the chair"
+        "answer": None,
+        "next_question": "2"
     },
     "2": {
-        "img": ["/static/imgs/quiz2_img"],
+        "question_id": "2",
+        "img": ["/static/imgs/quiz1_img.png"],
+        "question": "Where do you put the napkin when you leave the table for bathroom break?",
+        "choices":["Bring it with you", "On the plate", "On your lap", "On the chair"],
+        "answer": "On the chair",
+        "next_question": "3"
+    },
+    "3": {
+        "question_id": "3",
+        "img": ["/static/imgs/quiz2_img.png"],
         "question": "What's the golden rule of the table setting?",
         "choices":["Pick any for or spoon available",  "Big utensils first, small utensils second", "Start at the outside and work your way in", "There is no rule"],
         "answer": "Start at the outside and work your way in",
-    },
-    "3": {
-        "img": ["/static/imgs/quiz3_img"],
-        "question": "You are served fried calamari as an appetizer, which utensil do you use?",
-        "choices": ["A", "B", "C", "D","E", "None of the above"],
-        "answer":  "A"
+        "next_question": "4"
     },
     "4": {
-        "img": ["/static/imgs/quiz4_img"],
-        "question": "You and your friends are in a restaurant having dinner torgether and your're really hungry. All of your food have been sered except the order for Abby who is seating next to you. What is the polite way to behave in this situation?",
-        "choices": [ "Start eating first",  "Ask Abby if it's okay to start eating first", "Wait for Abby's dish to be served"],
-        "answer": "Wait for Abby's dish to be served"
+        "question_id": "4",
+        "img": ["/static/imgs/quiz3_img.png"],
+        "question": "You are served fried calamari as an appetizer, which utensil do you use?",
+        "choices": ["A", "B", "C", "D","E", "None of the above"],
+        "answer":  "A",
+        "next_question": "5"
     },
     "5": {
-        "img": ["/static/imgs/quiz5_img1", "/static/imgs/quiz5_img2", "/static/imgs/quiz5_img3"],
+        "question_id": "5",
+        "img": ["/static/imgs/quiz4_img.png", ],
+        "question": "You and your friends are in a restaurant having dinner torgether and your're really hungry. All of your food have been sered except the order for Abby who is seating next to you. What is the polite way to behave in this situation?",
+        "choices": [ "Start eating first",  "Ask Abby if it's okay to start eating first", "Wait for Abby's dish to be served"],
+        "answer": "Wait for Abby's dish to be served",
+        "next_question": "6"
+    },
+    "6": {
+        "question_id": "6",
+        "img": ["/static/imgs/quiz5_img1.png", "/static/imgs/quiz5_img2.png", "/static/imgs/quiz5_img3.png"],
         "question": "Which fork is which? Choose the correct labels.",
         "choices": ["A", "B", "C"],
-        "answer": "B"
+        "answer": "B",
+        "next_question": None
     }
 }
 
@@ -137,7 +149,7 @@ def table_setting(table_setting_id):
 
 @app.route('/quiz/<id>')
 def quiz(id):
-    return render_template('quiz.html', data=quiz_data, id=id)
+    return render_template('quiz.html', data=quiz_data[str(id)])
 
 # AJAX FUNCTIONS
 

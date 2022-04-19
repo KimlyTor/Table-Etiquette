@@ -21,12 +21,12 @@ $(document).ready(function(){
         // insert buttons
         var quiz_btn = $("<button>").attr("id", "quiz-btn").text("Quiz");
         quiz_btn.click(function(e){
-            window.location.href = `http://127.0.0.1:5000/quiz`;
+            window.location.href = `http://127.0.0.1:5000/quiz/1`;
         });
 
         var tbl_set_btn = $("<button>").attr("id", "tbl-set-btn").text("Table Setting");
         tbl_set_btn.click(function(e){
-            window.location.href = `http://127.0.0.1:5000/table_setting`;
+            window.location.href = `http://127.0.0.1:5000/table_setting/1`;
         });
 
         var dne_btn = $("<button>").attr("id", "dne-btn").text("Done");
