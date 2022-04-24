@@ -25,16 +25,16 @@ function VerifyAnswer(id, n, answer_index){
     if (ans.prop("checked")){ // Answer is correct
         none_checked = false;
         console.log($(`#div-${answer_index}`));
-        $(`#div-${answer_index}`).append("<span class='highlight-green'> is the right answer!</span>");
+        $(`#div-${answer_index}`).append("<span class='highlight-green'>    Correct!</span>");
         SaveRecord({"id": id, "score": 1});
     }
     else{ // Answer is wrong
-        $(`#div-${answer_index}`).append("<span class='highlight-green'> is the right answer!</span>");
+        $(`#div-${answer_index}`).append("<span class='highlight-green'>    Correct!</span>");
         for (let c = 0; c < n; c++) {
             var input = $(`#${id}-${c}`);
             if(input.prop("checked")){
                 none_checked = false;
-                $(`#div-${id}-${c}`).append("<span class='highlight-red'> is not the right answer!</span>")
+                $(`#div-${id}-${c}`).append("<span class='highlight-red'>   Wrong.</span>")
             }
         }
         SaveRecord({"id": id, "score": 0});

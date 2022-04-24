@@ -11,14 +11,16 @@ bsc_rul_data = {
         "img": ["1.png"],
         "text": ["Keep your elbows off the table. Putting elbows on the table is considered rude.",
                  "Don’t put your bags, sun glasses, phones, and other personal belonging on the table"],
-        "next_rule": "2"
+        "next_rule": "2",
+        "prev_rule": None,
     },
     "2": {
         "rule_id": "2",
         "title": "Start at the Outside and Work Your Way In",
         "img": ["2-2.png"],
         "text": [],
-        "next_rule": "3"
+        "next_rule": "3",
+        "prev_rule": "1"
     },
     "3": {
         "rule_id": "3",
@@ -26,21 +28,24 @@ bsc_rul_data = {
         "img": ["4.png", "5.png"],
         "text": ["Fold your napkin in half and place it on your lap. Keep it there while you’re eating",
                  "Leave the napkin on the chair if you would like leave the table for a moment"],
-        "next_rule": "4"
+        "next_rule": "4",
+        "prev_rule": "2"
     },
     "4": {
         "rule_id": "4",
         "title": "Wait for Everyone to be Served",
         "img": ["6.png"],
         "text": [],
-        "next_rule": "5"
+        "next_rule": "5",
+        "prev_rule": "3"
     },
     "5": {
         "rule_id": "5",
         "title": "When Finished, Leave Your Fork and Knife Like This!",
         "img": ["7.png"],
         "text": [],
-        "next_rule": "6"
+        "next_rule": "6",
+        "prev_rule": "4"
     },
     "6": {
         "rule_id": "6",
@@ -51,7 +56,8 @@ bsc_rul_data = {
                  "Put Napkin on Your Lap",
                  "Wait for Everyone to be Served",
                  "When Finished, Leave Your Fork and Knife Diagonally"],
-        "next_rule": None
+        "next_rule": None,
+        "prev_rule": "5"
     }
 }
 
