@@ -1,9 +1,13 @@
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify
+from datetime import datetime
 app = Flask(__name__)
 
-# ROUTES
+
+# DATA
+bsc_rul_time = {"start": None, "end": None}
+
 bsc_rul_data = {
     "1": {
         "rule_id": "1",
@@ -60,7 +64,6 @@ bsc_rul_data = {
         "prev_rule": "5"
     }
 }
-
 
 table_settings = {
     "1": {
@@ -147,18 +150,32 @@ def calc_score():
 def welcome():
     return render_template('home.html')
 
-
 @app.route('/basic_rules/<id>')
 def basic_rules(id):
     return render_template('basic_rules.html', data=bsc_rul_data[str(id)])
 
+@app.route('/basic_rules/start_timer', methods=['GET', 'POST'])
+def start_timer():
+    if bsc_rul_time["start"] is None:
+        bsc_rul_time["start"] = datetime.now().timestamp()
+    return jsonify(data=bsc_rul_time["start"])
+
+@app.route('/basic_rules/end_timer', methods=['GET', 'POST'])
+def end_timer():
+    if bsc_rul_time["end"] is None:
+        bsc_rul_time["end"] = datetime.now().timestamp()
+    elapsed_time = bsc_rul_time["end"] - bsc_rul_time["start"]
+
+    # Restart timer
+    bsc_rul_time["end"] = None
+    bsc_rul_time["start"] = None
+    return jsonify(data=elapsed_time)
 
 @app.route('/table_setting/<table_setting_id>')
 def table_setting(table_setting_id):
     table_setting = table_settings[str(table_setting_id)]
     id = table_setting_id
     return render_template('table_setting.html', table_setting=table_setting, id=id)
-
 
 @app.route('/quiz/<id>')
 def quiz(id):
