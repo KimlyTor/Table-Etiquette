@@ -19,22 +19,17 @@ $(document).ready(function(){
         $("#content").append(ol, img)
 
         // insert buttons
-        var quiz_btn = $("<button>").attr("id", "quiz-btn").text("Quiz");
-        quiz_btn.click(function(e){
-            window.location.href = `http://127.0.0.1:5000/quiz/0`;
-        });
-
-        var tbl_set_btn = $("<button>").attr("id", "tbl-set-btn").text("Table Setting");
+        var tbl_set_btn = $("<button>").attr("id", "tbl-set-btn").text("Next: Learn about Table Setting!");
         tbl_set_btn.click(function(e){
             window.location.href = `http://127.0.0.1:5000/table_setting/1`;
         });
 
-        var dne_btn = $("<button>").attr("id", "dne-btn").text("Done");
+        var dne_btn = $("<button>").attr("id", "dne-btn").text("Back to Home Page");
         dne_btn.click(function(e){
             window.location.href = `http://127.0.0.1:5000/`;
         });
 
-        $("#reaction").append(quiz_btn, tbl_set_btn, dne_btn)
+        $("#reaction").append(tbl_set_btn, dne_btn)
     }
     else{
         if ((len_img == 1) && (len_text == 0)){
@@ -70,10 +65,23 @@ $(document).ready(function(){
             $("#content").append(panel_r)
         }
         
-        var button = $("<button>").attr("id", "next-btn").text("Next");
-        button.click(function(e){
-            window.location.href = `http://127.0.0.1:5000/basic_rules/${data['next_rule']}`;
-        });
-        $("#reaction").append(button)
+                
+        // Append Buttons
+
+        if (data['prev_rule'] != null){
+            var back_btn = $("<button>").attr("id", "back-btn").text("Back");
+            back_btn.click(function(e){
+                window.location.href = `http://127.0.0.1:5000/basic_rules/${data['prev_rule']}`;
+            });    
+            $("#reaction").append(back_btn)
+        }
+
+        if (data['next_rule'] != null){
+            var next_btn = $("<button>").attr("id", "next-btn").text("Next");
+            next_btn.click(function(e){
+                window.location.href = `http://127.0.0.1:5000/basic_rules/${data['next_rule']}`;
+            });
+            $("#reaction").append(next_btn)
+        }
     }
 });

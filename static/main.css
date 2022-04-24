@@ -24,10 +24,12 @@
 
 .highlight-red{
     color: brown;
+    font-weight: bold;
 }
 
 .highlight-green{
     color: green;
+    font-weight: bold;
 }
 
 .whole-line{
