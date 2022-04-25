@@ -138,3 +138,17 @@
 .whole-line{
     display: block !important;
 }
+
+.name-boxes{
+    z-index: auto;
+    border: 3px solid rgb(238, 137, 48);
+    background-color: bisque;
+    width: 360px;
+}
+
+#reaction-drag-drop{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+
