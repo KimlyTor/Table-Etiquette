@@ -133,6 +133,27 @@ quiz_data = {
         "question": "Which fork is which? Choose the correct labels.",
         "choices": ["A", "B", "C"],
         "answer": "B",
+        "next_question": "drag_and_drop"
+    },
+    "drag_and_drop":{
+        "question_id": "Drag and Drop",
+        "img": ["/static/imgs/drag_and_drop_quiz.png"],
+        "question": "Match the names to the correct labels",
+        "choices": ["Napkin", "Salad Fork", "Dinner Fork", "Soup spoon", "Dinner spoon", "Salad Plate", "Dinner Plate", "Bread plate and butter knife", "Dessert spoon and fork", "Wine glass", "Water glass", "Dinner knife"],
+        "answer": {
+            "A":"Dinner Plate", 
+            "B":"Dinner Fork", 
+            "C":"Salad Fork", 
+            "D":"Napkin",
+            "E":"Dinner Knife",
+            "F":"Soup spoon",
+            "G":"Wine glass",
+            "H":"Salad plate",
+            "I":"Bread plate and butter knife",
+            "J":"Dessert spoon and fork",
+            "K":"Dinner spoon",
+            "L":"Water glass",
+         },
         "next_question": "summary"
     }
 }
@@ -206,6 +227,10 @@ def save_record():
 
     print(user_score)
     return jsonify(data=score)
+
+@app.route('/quiz/drag_and_drop')
+def quiz_drag_drop():
+    return render_template('quiz_drag_drop.html', data=quiz_data["drag_and_drop"])
 
 
 if __name__ == '__main__':
