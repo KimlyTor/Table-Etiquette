@@ -4,7 +4,7 @@ $(document).ready(function(){
     var sum = "Total Score: " + data;
     $("#content").append(c1, '<br>', c0, '<br>', sum);
 
-    var dne_btn = $("<button>").attr("id", "dne-btn").text("You're Done! Back to Homepage");
+    var dne_btn = $("<button>").attr("id", "dne-btn").attr("class", "btn btn-primary").text("You're Done! Back to Homepage");
     dne_btn.click(function(e){
         window.location.href = `http://127.0.0.1:5000/`;
     });

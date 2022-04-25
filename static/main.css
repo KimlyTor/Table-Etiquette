@@ -6,12 +6,115 @@
     float: right;
 }
 
+#nav_bar{
+    background-color:  sandybrown;
+}
+
+#basic-rule-btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#table-setting-btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#quiz-btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#next_but{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#next_learn_but{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#back_to_but{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#back_but{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#rule_5{
+    max-width:40%;
+    height:auto;
+}
+
+#back-btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#next-btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#quiz-btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#done-btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#start_btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#next_btn{
+    background-color:  sandybrown;
+    border-color: sandybrown;
+}
+
+#submit-btn{
+    background-color: green;
+    border-color: green;
+}
+
+#dne-btn{
+    background-color: sandybrown;
+    border-color: sandybrown;
+}
 .resize-img{
     width: 50%;
 }
 
 .flag-img{
     width: 20px;
+}
+.basic_content{
+    font-size: 17px;
+    padding-top: 80px;
+}
+#basic_image{
+    margin-top: 30px;
+}
+
+#basic_rule_3{
+    padding-top: 30px;
+    font-size: 19px;
+}
+
+#table_image{
+    margin-top: 50px;
+}
+
+#quiz_image{
+    margin-top: 90px;
 }
 
 .choice-btn{

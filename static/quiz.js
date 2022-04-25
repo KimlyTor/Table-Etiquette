@@ -64,7 +64,7 @@ $(document).ready(function(){
         }
         $("#content").append(ul);
 
-        var start_btn = $("<button>").attr("id", "start_btn").text("Start Quiz");
+        var start_btn = $("<button>").attr("id", "start_btn").attr("class", "btn btn-primary").text("Start Quiz");
         start_btn.click(function(e){
             window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
         });
@@ -107,7 +107,7 @@ $(document).ready(function(){
 
 
     // list actions
-    var submit_btn = $("<button>").attr("id", "submit-btn").text("Submit Answer");
+    var submit_btn = $("<button>").attr("id", "submit-btn").attr("class", "btn btn-primary").text("Submit Answer");
     submit_btn.click(function(e){
         var none_checked = VerifyAnswer(id, list_choices.length, answer_index);
         if(!none_checked){
@@ -116,7 +116,7 @@ $(document).ready(function(){
         }
     });
 
-    var next_btn = $("<button>").attr("id", "next_btn").text("Next");
+    var next_btn = $("<button>").attr("id", "next_btn").attr("class", "btn btn-primary").text("Next");
     next_btn.click(function(e){
         window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
     });
