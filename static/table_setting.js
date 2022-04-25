@@ -8,13 +8,13 @@ $(document).ready(function(){
         $("#buttons_at_bottom").replaceWith(
             '<div class="row justify-content-around my-5" id="buttons_at_bottom">'+
                 '<div class="col-sm-auto">'+
-                    '<button id="back-btn">Back</button>'+
+                    '<button class="btn btn-primary" id="back-btn">Back</button>'+
                 '</div>'+
                 '<div class="col-sm-auto">'+
-                    '<button id="done-btn">Done</button>'+
+                    '<button class="btn btn-primary" id="done-btn">Home</button>'+
                 '</div>'+
                 '<div class="col-sm-auto">'+
-                    '<button id="quiz-btn">Quiz</button>'+
+                    '<button class="btn btn-primary" id="quiz-btn">Quiz</button>'+
                 '</div>'+
             '</div>'
         )

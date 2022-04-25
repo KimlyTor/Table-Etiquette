@@ -13,8 +13,8 @@ bsc_rul_data = {
         "rule_id": "1",
         "title": "Don’t Put Stuffs on the Table",
         "img": ["1.png"],
-        "text": ["Keep your elbows off the table. Putting elbows on the table is considered rude.",
-                 "Don’t put your bags, sun glasses, phones, and other personal belonging on the table"],
+        "text": ["Keep your <strong>elbows off the table</strong>. Putting elbows on the table is considered rude.",
+                 "Don’t put your <strong>bags, sun glasses, phones</strong>, and <strong>other personal belonging</strong> on the table"],
         "next_rule": "2",
         "prev_rule": None,
     },
@@ -30,8 +30,8 @@ bsc_rul_data = {
         "rule_id": "3",
         "title": "Put Napkin on Your Lap",
         "img": ["4.png", "5.png"],
-        "text": ["Fold your napkin in half and place it on your lap. Keep it there while you’re eating",
-                 "Leave the napkin on the chair if you would like leave the table for a moment"],
+        "text": ["Fold your napkin in half and place it <strong>on your lap</strong>. Keep it there <strong>while you’re eating</strong>",
+                 "Leave the napkin <strong>on the chair</strong> if you would like <strong>leave the table</strong> for a moment"],
         "next_rule": "4",
         "prev_rule": "2"
     },
@@ -91,7 +91,7 @@ quiz_data = {
         "question_id": "0",
         "img": [],
         "question": "Test Your Knowledge. <br> How much do you know?",
-        "choices":["5 question", "1 drag and drop"],
+        "choices": ["5 question", "1 drag and drop"],
         "answer": None,
         "next_question": "1"
     },
@@ -99,7 +99,7 @@ quiz_data = {
         "question_id": "1",
         "img": ["/static/imgs/quiz1_img.png"],
         "question": "Where do you put the napkin when you leave the table for bathroom break?",
-        "choices":["Bring it with you", "On the plate", "On your lap", "On the chair"],
+        "choices": ["Bring it with you", "On the plate", "On your lap", "On the chair"],
         "answer": "On the chair",
         "next_question": "2"
     },
@@ -107,7 +107,7 @@ quiz_data = {
         "question_id": "2",
         "img": ["/static/imgs/quiz2_img.png"],
         "question": "What's the golden rule of the table setting?",
-        "choices":["Pick any for or spoon available",  "Big utensils first, small utensils second", "Start at the outside and work your way in", "There is no rule"],
+        "choices": ["Pick any for or spoon available",  "Big utensils first, small utensils second", "Start at the outside and work your way in", "There is no rule"],
         "answer": "Start at the outside and work your way in",
         "next_question": "3"
     },
@@ -115,7 +115,7 @@ quiz_data = {
         "question_id": "3",
         "img": ["/static/imgs/quiz3_img.png"],
         "question": "You are served fried calamari as an appetizer, which utensil do you use?",
-        "choices": ["A", "B", "C", "D","E", "None of the above"],
+        "choices": ["A", "B", "C", "D", "E", "None of the above"],
         "answer":  "A",
         "next_question": "4"
     },
@@ -123,7 +123,7 @@ quiz_data = {
         "question_id": "4",
         "img": ["/static/imgs/quiz4_img.png", ],
         "question": "You and your friends are in a restaurant having dinner torgether and your're really hungry. All of your food have been sered except the order for Abby who is seating next to you. What is the polite way to behave in this situation?",
-        "choices": [ "Start eating first",  "Ask Abby if it's okay to start eating first", "Wait for Abby's dish to be served"],
+        "choices": ["Start eating first",  "Ask Abby if it's okay to start eating first", "Wait for Abby's dish to be served"],
         "answer": "Wait for Abby's dish to be served",
         "next_question": "5"
     },
@@ -139,6 +139,7 @@ quiz_data = {
 
 user_score = {}
 
+
 def calc_score():
     score = 0
     for k, v in user_score.items():
@@ -146,19 +147,24 @@ def calc_score():
     return score
 
 # ROUTES
+
+
 @app.route('/')
 def welcome():
     return render_template('home.html')
 
+
 @app.route('/basic_rules/<id>')
 def basic_rules(id):
     return render_template('basic_rules.html', data=bsc_rul_data[str(id)])
+
 
 @app.route('/basic_rules/start_timer', methods=['GET', 'POST'])
 def start_timer():
     if bsc_rul_time["start"] is None:
         bsc_rul_time["start"] = datetime.now().timestamp()
     return jsonify(data=bsc_rul_time["start"])
+
 
 @app.route('/basic_rules/end_timer', methods=['GET', 'POST'])
 def end_timer():
@@ -171,15 +177,18 @@ def end_timer():
     bsc_rul_time["start"] = None
     return jsonify(data=elapsed_time)
 
+
 @app.route('/table_setting/<table_setting_id>')
 def table_setting(table_setting_id):
     table_setting = table_settings[str(table_setting_id)]
     id = table_setting_id
     return render_template('table_setting.html', table_setting=table_setting, id=id)
 
+
 @app.route('/quiz/<id>')
 def quiz(id):
     return render_template('quiz.html', data=quiz_data[str(id)])
+
 
 @app.route('/quiz/summary')
 def quiz_summary():
@@ -187,14 +196,16 @@ def quiz_summary():
     return render_template('quiz_summary.html', data=score)
 
 # AJAX FUNCTIONS
+
+
 @app.route('/quiz/save_record', methods=['GET', 'POST'])
 def save_record():
     record = request.get_json()
     user_score[record['id']] = int(record['score'])
     score = calc_score()
-    
+
     print(user_score)
-    return jsonify(data = score)
+    return jsonify(data=score)
 
 
 if __name__ == '__main__':
