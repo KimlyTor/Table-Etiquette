@@ -1,34 +1,68 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <!-- imagemapster js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imagemapster/1.5.4/jquery.imagemapster.min.js"></script>
+    
+    <script type="text/javascript" src="{{ url_for('static', filename = 'table_setting.js') }}"></script>
 
-  <script type="text/javascript" src="{{ url_for('static', filename = 'table_setting.js') }}"></script>
 
-  <script>
-      let table_setting = {{table_setting|tojson}}
-      let id = {{id}}
-      console.log(table_setting)
-      console.log(id)
-  </script>
+    <script>
+        let table_setting = {{table_setting|tojson}}
+        let id = {{id}}
+        console.log(table_setting)
+        console.log(id)
+    </script>
 
-  <div class="row justify-content-center  my-5">
-      <div class="col-sm-auto">
-          <h1 class="font-weight-bold text-center">{{table_setting["title"]}}</h1>
-      </div>
-  </div>
-  <div class="row justify-content-center my-3">
-      <div class="col-sm-auto">
-          <image src={{table_setting['image']}} alt="table-setting-image" width="500">
-      </div>
-  </div>
-  <div class="row justify-content-around my-5">
-      <div class="col-sm-auto">
-          <button id="back-btn">Back</button>
-      </div>
-      <div class="col-sm-auto">
-          <button id="next-btn">Next</button>
-      </div>
-  </div>
+    <div class="row justify-content-center my-5">
+        <div class="col-sm-auto">
+            <h1 class="font-weight-bold text-center">{{table_setting["title"]}}</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center my-3 ">
+        <div class="col-sm-auto col-md-auto map-image text-center">
+            <img  src={{table_setting['image']}} alt="table-setting-image" usemap="#Map" width="600">
+            <map name="Map" id="Map">
+                <area href="#" shape="rect" class="napkin" coords="50,290,220,800" name="napkin" alt="napkin" data-key=""napkin>
+                <!-- forks -->
+                <area href="#" shape="rect" class="fork-1" coords="290,459,365,830">
+                <area href="#" shape="rect" class="fork-2" coords="380,400,455,830">
+                <area href="#" shape="rect" class="fork-3" coords="470,400,550,830">
+                <area href="#" shape="rect" class="fork-4" coords="600,150,960,220">
+                <!-- Plates -->
+                <area href="#" shape="circle" class="plate-1" coords="870,524,150">
+                <area href="#" shape="circle" class="plate-2" coords="870,524,230">
+                <area href="#" shape="circle" class="plate-3" coords="870,524,280">
+                <area href="#" shape="circle" class="plate-4" coords="420,215,150">
+                <!-- knife -->
+                <area href="#" shape="rect" class="knife-1" coords="1190,400,1270,830">
+                <area href="#" shape="rect" class="knife-2" coords="1290,480,1350,830">
+                <area href="#" shape="rect" class="knife-3" coords="260,135,600,305">
+                <!-- spoon -->
+                <area href="#" shape="rect" class="spoon-1" coords="1375,430,1450,830">
+                <area href="#" shape="rect" class="spoon-2" coords="1465,465,1530,830">
+                <area href="#" shape="rect" class="spoon-3" coords="600,60,960,140">
+                <!-- cup and glasses -->
+                <area href="#" shape="circle" class="cup" coords="1120,165,70">
+                <area href="#" shape="circle" class="saucer" coords="1120,165,100">
+                <area href="#" shape="circle" class="glass-1" coords="1350,165,65">
+                <area href="#" shape="circle" class="glass-2" coords="1280,310,55">
+                <area href="#" shape="circle" class="glass-3" coords="1450,310,65">
+                <!-- Card Holder -->
+                <area href="#" shape="rect" class="card-holder" coords="60,115,230,205">
+
+            </map>
+
+        </div>
+    </div>
+    <div class="row justify-content-around my-5" id="buttons_at_bottom">
+        <div class="col-sm-auto">
+            <button id="back-btn">Back</button>
+        </div>
+        <div class="col-sm-auto">
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
 
 
 {% endblock %}

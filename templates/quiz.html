@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<<<<<<< HEAD
 <script>
     let data = {{ data|tojson }}
 </script>
@@ -14,4 +15,24 @@
     <div id="choice" class="row">
     </div>
 </div>
+=======
+
+<script>
+    let data = {{ data|tojson }}
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
+
+<div class="container">
+    <div id="question" class="row justify-content-center text-center my-3">
+    </div>
+    <div id="content" class="row justify-content-center text-center my-3">
+    </div>
+    <div id="choices" class="row justify-content-center my-3">
+    </div>
+    <div id="reaction" class="row justify-content-around text-center my-3">
+    </div>
+</div>
+
+>>>>>>> f545730bb61254e42b5acc93ca9cadb3b569ded5
 {% endblock %}

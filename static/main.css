@@ -1,5 +1,5 @@
-img {
-    width: 80%;
+#content img {
+    width: 60%;
 }
 
 #next-btn {
@@ -8,4 +8,30 @@ img {
 
 .resize-img{
     width: 50%;
+}
+
+.flag-img{
+    width: 20px;
+}
+
+.choice-btn{
+    display: block !important;
+}
+/* .map-image img{
+    width: auto;
+} */
+
+
+.highlight-red{
+    color: brown;
+    font-weight: bold;
+}
+
+.highlight-green{
+    color: green;
+    font-weight: bold;
+}
+
+.whole-line{
+    display: block !important;
 }
