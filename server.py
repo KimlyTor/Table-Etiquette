@@ -141,9 +141,9 @@ quiz_data = {
         "question": "Match the names to the correct labels",
         "choices": ["Napkin", "Salad Fork", "Dinner Fork", "Soup spoon", "Dinner spoon", "Salad Plate", "Dinner Plate", "Bread plate and butter knife", "Dessert spoon and fork", "Wine glass", "Water glass", "Dinner knife"],
         "answer": {
-            "A":"Dinner Plate", 
-            "B":"Dinner Fork", 
-            "C":"Salad Fork", 
+            "A":"Dinner plate", 
+            "B":"Dinner fork", 
+            "C":"Salad fork", 
             "D":"Napkin",
             "E":"Dinner Knife",
             "F":"Soup spoon",

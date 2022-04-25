@@ -1,4 +1,27 @@
-function VerifyAnswer(){
+function VerifyAnswer(dict1, dict2){
+    let right_answer = [];
+    let wrong_answer = [];
+    let score = 0;
+    $.each(dict1, function(key1, val1){
+        if(val1.toLowerCase() === dict2[key1].toLowerCase()){
+            right_answer.push(key1);
+            score += 1;
+        }else{
+            wrong_answer.push(key1);
+        }
+
+    })
+    console.log("Score", score)
+    console.log("correctAnswer", right_answer)
+    console.log("wrongAnswer", wrong_answer)
+
+    $.each(right_answer, function(index,val){
+        $(`#${val}`).append("<div class='col-sm-2'><span class='highlight-green'>    Correct!</span></div>")
+    })
+
+    $.each(wrong_answer, function(index, val){
+        $(`#${val}`).append("<div class='col-sm-2'><span class='highlight-red'>    Wrong!</span></div>")
+    })
 
 }
 
@@ -19,7 +42,7 @@ function update_drag_drop_key_value(dict){
         $.each(dict, function(key, val){
             $("#anchor").before(
                     $('<div class="row key_value_drop_area droppable">' + 
-                        '<div class="col-sm-9 border value">'+val+'</div>'+
+                        '<div class="col-sm-7 border value">'+val+'</div>'+
                     '</div>').attr('id', key)
             )
         })
@@ -34,7 +57,6 @@ $(document).ready(function(){
     let list_img = data['img'];
     let list_choices = data['choices'];
     let answer = data['answer'];
-    let answer_index= null;
     let names = {}
 
     // SET UP
@@ -49,12 +71,14 @@ $(document).ready(function(){
         let col_wid = parseInt(12/n).toString()
         for (const i of list_img) {
             let img = $("<img>").attr("src", `${i}`).addClass("img-fluid w-100").attr({'alt':data['question']});
-            let panel = $(`<div class='col-md-6 px-0 bg-warning'>`).append(img);
-            let drag_drop_area = $(`<div class='col-md-5 mx-4'>`).append(
-                '<div class="row drag_drop_header">' + 
-                    '<div class="col-sm-3 text-center pt-3 border" id="labels"><strong>Labels</strong></div>'+
-                    '<div class="col-sm-9 text-center pt-3 border" id="names"><strong>Names</strong></div>'+
+            let panel = $(`<div class='col-md-6 px-0'>`).append(img);
+            let drag_drop_area = $(`<div class='col-md-4 mx-4'>`).append(
+                // Labels and Names header
+                '<div class="row">' + 
+                    '<div class="col-sm-3 text-center pt-3 border drag_drop_header" id="labels"><strong>Labels</strong></div>'+
+                    '<div class="col-sm-7 col-md-7 text-center pt-3 border drag_drop_header" id="names"><strong>Names</strong></div>'+
                 '</div>'+
+                //avoid reversing the array use .before
                 '<div id="anchor" ></div>'
             )
           
@@ -65,17 +89,13 @@ $(document).ready(function(){
     // list labels
     if(Object.keys(answer).length){
         $.each(answer, function(key, val){
+            //add div before anchor
             $("#anchor").before(
                     $('<div class="row key_value_drop_area droppable">' + 
                         '<div class="col-sm-3 border text-center key">'+key+'</div>'+
-                        '<div class="col-sm-9 border value">'+'</div>'+
+                        '<div class="col-sm-7 border value">'+'</div>'+
                     '</div>').attr('id', key)
                 )
-            // $(".header").after(
-            //     '<div class="row" id="utensils-names">' + 
-            //         '<div class="col-sm-9 border">'+'</div>'+
-            //         '</div>' 
-            //     )   
         })
     }
 
@@ -91,15 +111,15 @@ $(document).ready(function(){
         
     });
     
-
+    //Check Answer when submit
     let submit_btn = $("<button>").attr("id", "submit-btn").attr("class", "btn btn-primary").text("Submit Answer");
-    // submit_btn.click(function(e){
-    //     none_checked = VerifyAnswer(id, list_choices.length, answer_index);
-    //     if(!none_checked){
-    //         submit_btn.prop("disabled", true);
-    //         next_btn.prop("disabled", false);
-    //     }
-    // });
+    submit_btn.click(function(e){
+        VerifyAnswer(names, answer);
+        submit_btn.prop("disabled", true);
+        next_btn.prop("disabled", false);
+        $('.droppable').droppable("option", "disabled", true)
+    
+    });
     let next_btn = $("<button>").attr("id", "next_btn").attr("class", "btn btn-primary").text("Next");
     next_btn.click(function(e){
         window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
