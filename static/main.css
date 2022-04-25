@@ -151,4 +151,16 @@
     margin-bottom: 80px;
 }
 
+.drag_drop_header{
+    height:15%;
+    background-color: bisque;
+   
+}
+
+
+.ui-droppable-active.ui-droppable-hover{
+    background-color: rgb(238, 137, 48);
+}
+
+
 
