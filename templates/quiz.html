@@ -1,5 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    Quiz page
+<script>
+    let data = {{ data|tojson }}
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
+
+<div class="container">
+    <div id="question" class="row">
+    </div>
+    <div id="content" class="row">
+    </div>
+    <div id="choice" class="row">
+    </div>
+</div>
 {% endblock %}

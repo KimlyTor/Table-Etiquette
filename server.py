@@ -145,8 +145,7 @@ def table_setting(table_setting_id):
 
 @app.route('/quiz/<id>')
 def quiz(id):
-
-    return render_template('quiz.html', data=quiz_data, id=id)
+    return render_template('quiz.html', data=quiz_data[str(id)])
 
 # AJAX FUNCTIONS
 
