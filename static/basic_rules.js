@@ -43,7 +43,7 @@ function EndTimer(){
 $(document).ready(function(){
     console.log(data);
     // append title
-    var title = $("<h4>").html(`Rule ${data['rule_id']}: ${data['title']}`);
+    var title = $("<h2>").html(`Rule ${data['rule_id']}: ${data['title']}`);
     $("#title").append(title);
 
     var list_img = data['img'];
