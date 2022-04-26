@@ -2,6 +2,10 @@
     width: 60%;
 }
 
+#main_content{
+    padding-top: 60px;
+}
+
 #next-btn {
     float: right;
 }
