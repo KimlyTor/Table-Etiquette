@@ -11,9 +11,6 @@ $(document).ready(function(){
                     '<button class="btn btn-primary" id="back-btn">Back</button>'+
                 '</div>'+
                 '<div class="col-sm-auto">'+
-                    '<button class="btn btn-primary" id="done-btn">Home</button>'+
-                '</div>'+
-                '<div class="col-sm-auto">'+
                     '<button class="btn btn-primary" id="quiz-btn">Quiz</button>'+
                 '</div>'+
             '</div>'
@@ -55,18 +52,6 @@ $(document).ready(function(){
     })
 
    
-    // $('img').mapster({
-    //     fillColor: '13A0E8',
-    //     fillOpacity: 0.1,
-    //     stroke: true,
-    //     strokeColor: '138CE8',
-    //     strokeWidth: 1,
-    //     strokeOpacity: 5,
-    //     showToolTip: true,
-    //     areas: [{
-    //         key:"napkin"
-    //     }],
-    // });
 
     //source https://stackoverflow.com/questions/30383932/imagemapster-not-working
     $('img').mapster({

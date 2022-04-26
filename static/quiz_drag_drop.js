@@ -20,7 +20,8 @@ function VerifyAnswer(dict1, dict2){
     })
 
     $.each(wrong_answer, function(index, val){
-        $(`#${val}`).append("<div class='col-sm-2'><span class='highlight-red'>    Wrong!</span></div>")
+        $(`#${val}`).append("<div class='col-sm-2'><span class='highlight-red'>" + dict2[val]+"</span></div>")
+                    .css("white-space", "nowrap");
     })
 
 }
@@ -117,6 +118,7 @@ $(document).ready(function(){
         VerifyAnswer(names, answer);
         submit_btn.prop("disabled", true);
         next_btn.prop("disabled", false);
+        // disable droppable after submit
         $('.droppable').droppable("option", "disabled", true)
     
     });
@@ -131,7 +133,13 @@ $(document).ready(function(){
     // // Drag and Drop 
 
     //make name-boxes draggable
-    $('.draggable').draggable();
+    $(".draggable").draggable({
+        revert: true,
+        drag: function(event, ui){
+            $( this ).css('z-index','1000');
+        }
+        
+    })
 
     //make labels A, B, C,... droppable
     $(".droppable").droppable({
