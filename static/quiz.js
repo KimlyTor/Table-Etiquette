@@ -54,10 +54,10 @@ $(document).ready(function(){
 
 
     if(id == 0){
-        var q_text = $("<h5>").html(`${question}`);
+        var q_text = $("<h2>").html(`${question}`);
         $("#question").append(q_text);
          
-        var ul = $('<ul>');
+        var ul = $('<ul class="quiz_first">');
         for (const i of list_choices) {
             var li = $('<li>').text(i);
             ul.append(li)

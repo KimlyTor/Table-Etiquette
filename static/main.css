@@ -101,7 +101,7 @@
     width: 20px;
 }
 .basic_content{
-    font-size: 17px;
+    font-size: 22px;
     padding-top: 80px;
 }
 #basic_image{
@@ -110,7 +110,7 @@
 
 #basic_rule_3{
     padding-top: 30px;
-    font-size: 19px;
+    font-size: 22px;
 }
 
 #table_image{
@@ -119,6 +119,10 @@
 
 #quiz_image{
     margin-top: 90px;
+}
+
+.quiz_first{
+    font-size:  30px;
 }
 
 .choice-btn{
