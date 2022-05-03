@@ -76,7 +76,20 @@ $(document).ready(function(){
     let list_img = data['img'];
     let list_choices = data['choices'];
     let answer = data['answer'];
-    let names = {}
+    let names = {
+        "A": "n/a",
+        "B": "n/a",
+        "C": "n/a",
+        "D": "n/a",
+        "E": "n/a",
+        "F": "n/a",
+        "G": "n/a",
+        "H": "n/a",
+        "I": "n/a",
+        "J": "n/a",
+        "K": "n/a",
+        "L": "n/a",
+    }
 
     // SET UP
 
