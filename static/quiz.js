@@ -29,11 +29,11 @@ function VerifyAnswer(id, n, answer_index){
         SaveRecord({"id": id, "score": 1});
     }
     else{ // Answer is wrong
-        $(`#div-${answer_index}`).append("<span class='highlight-green'>    Correct!</span>");
         for (let c = 0; c < n; c++) {
             var input = $(`#${id}-${c}`);
             if(input.prop("checked")){
                 none_checked = false;
+                $(`#div-${answer_index}`).append("<span class='highlight-green'>    Correct!</span>");
                 $(`#div-${id}-${c}`).append("<span class='highlight-red'>   Wrong.</span>")
             }
         }
@@ -107,12 +107,17 @@ $(document).ready(function(){
 
 
     // list actions
+    var warning_block = $("<span class='highlight-red' id='warning_block'>")
     var submit_btn = $("<button>").attr("id", "submit-btn").attr("class", "btn btn-primary").text("Submit Answer");
     submit_btn.click(function(e){
+        $(`#warning_block`).empty();
         var none_checked = VerifyAnswer(id, list_choices.length, answer_index);
         if(!none_checked){
             submit_btn.prop("disabled", true);
             next_btn.prop("disabled", false);
+        }
+        else{
+            $(`#warning_block`).html("No answer selected! Try select and Submit again!")
         }
     });
 
@@ -121,5 +126,8 @@ $(document).ready(function(){
         window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
     });
     next_btn.prop("disabled", true);
-    $("#reaction").append(submit_btn, next_btn);
+    var col1= $("<div class='col-md-6 justify-content-around text-center'>").append(warning_block)
+    var col2 = $("<div class='col-md-6 justify-content-around text-center'>").append(submit_btn, next_btn)
+    
+    $("#reaction").append(col1, col2);
 });
