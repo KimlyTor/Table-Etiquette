@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     // replace image with text for slide 1
     if(id==1){

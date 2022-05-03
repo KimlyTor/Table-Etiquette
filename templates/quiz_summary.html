@@ -4,6 +4,7 @@
 
 <script>
     let data = {{ data|tojson }}
+    console.log("score from server:" + data)
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'quiz_summary.js') }}"></script>
