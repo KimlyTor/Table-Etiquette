@@ -214,6 +214,7 @@ def quiz(id):
 @app.route('/quiz/summary')
 def quiz_summary():
     score = calc_score()
+    user_score = {}
     return render_template('quiz_summary.html', data=score)
 
 # AJAX FUNCTIONS
