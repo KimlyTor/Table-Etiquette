@@ -2,6 +2,7 @@
 $(document).ready(function(){
     // replace image with text for slide 1
     if(id==1){
+        $("h1").attr('id', "table-setting-title");
         $("img").replaceWith("<p class='text-center'>"+table_setting["text"]+"</p>");
     }
 
@@ -10,7 +11,26 @@ $(document).ready(function(){
             '<img  src=' +table_setting["image"] +' alt="table-setting-image" usemap="#Map" width="600">'
 
             
-        )
+        );
+        $("#buttons_at_bottom").replaceWith(
+            '<div class="row justify-content-around my-5" id="buttons_at_bottom">'+
+                '<div class="col-sm-auto">'+
+                    '<button class="btn btn-primary" id="back-btn">Back</button>'+
+                '</div>'+
+                '<div class="col-sm-auto">'+
+                    '<button class="btn btn-primary" id="quiz-btn">Quiz</button>'+
+                '</div>'+
+            '</div>'
+        );
+
+        $('#done-btn').click(function(){
+            window.location.replace("http://127.0.0.1:5000/");
+
+        });
+
+        $('#quiz-btn').click(function(){
+            window.location.replace("http://127.0.0.1:5000/quiz/0");     
+        });
     }
 
     $('.napkin').click(function(){

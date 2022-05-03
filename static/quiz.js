@@ -127,7 +127,7 @@ $(document).ready(function(){
     });
     next_btn.prop("disabled", true);
     var col1= $("<div class='col-md-6 justify-content-around text-center'>").append(warning_block)
-    var col2 = $("<div class='col-md-6 justify-content-around text-center'>").append(submit_btn, next_btn)
+    var col2 = $("<div class='col-md-6 justify-content-around text-center mb-5'>").append(submit_btn, next_btn)
     
     $("#reaction").append(col1, col2);
 });

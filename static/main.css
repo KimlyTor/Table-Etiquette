@@ -1,9 +1,17 @@
+html, body {
+    width: 100%;
+    height: 100vh; /* 100% of the viewport height */
+    margin: 0;
+  }
+
+
+
 #content img {
     width: 60%;
 }
 
 #main_content{
-    padding-top: 60px;
+    padding-top: 100px; 
 }
 
 #next-btn {
@@ -173,4 +181,14 @@
 #finish_title{
     display: block;
     margin-bottom: 80px;    
+}
+
+#golden-rule{
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+#table-setting-title{
+    margin-top: 120px;
 }
