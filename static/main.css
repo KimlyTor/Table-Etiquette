@@ -165,10 +165,11 @@
    
 }
 
-
 .ui-droppable-active.ui-droppable-hover{
     background-color: rgb(238, 137, 48);
 }
 
-
-
+#finish_title{
+    display: block;
+    margin-bottom: 80px;    
+}
