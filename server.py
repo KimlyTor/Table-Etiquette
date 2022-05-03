@@ -68,12 +68,12 @@ bsc_rul_data = {
 table_settings = {
     "1": {
         "title": "Table Setting",
-        "text": 'The golden rule, "Start at the Outside and Work Your Way In"',
+        "text": 'The golden rule, <span id="golden-rule">"Start at the Outside and Work Your Way In"<span>',
         "image": "#",
         "next_lesson": "2"
     },
     "2": {
-        "title": "Click on Each Item to See Its Name",
+        "title": "Hover on Each Item to See Its Name",
         "text": "n/a",
         "image": "/static/imgs/table_setting_1.png",
         "next_lesson": "3"
