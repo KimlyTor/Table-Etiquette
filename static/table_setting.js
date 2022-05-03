@@ -6,27 +6,11 @@ $(document).ready(function(){
     }
 
     if(id==3){
-        $("#buttons_at_bottom").replaceWith(
-            '<div class="row justify-content-around my-5" id="buttons_at_bottom">'+
-                '<div class="col-sm-auto">'+
-                    '<button class="btn btn-primary" id="back-btn">Back</button>'+
-                '</div>'+
-                '<div class="col-sm-auto">'+
-                    '<button class="btn btn-primary" id="quiz-btn">Quiz</button>'+
-                '</div>'+
-            '</div>'
-        )
+        $("#content-block").replaceWith(
+            '<img  src=' +table_setting["image"] +' alt="table-setting-image" usemap="#Map" width="600">'
 
-        $('#done-btn').click(function(){
-            window.location.replace("http://127.0.0.1:5000/");
             
-        })
-
-        $('#quiz-btn').click(function(){
-            window.location.replace("http://127.0.0.1:5000/quiz/0");     
-        })
-
-
+        )
     }
 
     $('.napkin').click(function(){
