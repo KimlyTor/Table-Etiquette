@@ -222,10 +222,11 @@ def quiz_summary():
 @app.route('/quiz/save_record', methods=['GET', 'POST'])
 def save_record():
     record = request.get_json()
+    # add id and score to user_score
     user_score[record['id']] = int(record['score'])
     score = calc_score()
 
-    print(user_score)
+    print("user_score", user_score)
     return jsonify(data=score)
 
 @app.route('/quiz/drag_and_drop')

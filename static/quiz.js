@@ -6,7 +6,7 @@ function SaveRecord(record){
         contentType: "application/json; charset=utf-8",
         data : JSON.stringify(record),
         success: function(result){
-            console.log(result['data'])
+            console.log("Ajax success! score from the server " + result['data'])
         },
         error: function(request, status, error){
             console.log("Error");
@@ -44,7 +44,7 @@ function VerifyAnswer(id, n, answer_index){
 }
 
 $(document).ready(function(){
-    console.log(data);
+    // console.log(data);
     var id = data['question_id']
     var question = data['question']
     var list_img = data['img'];
