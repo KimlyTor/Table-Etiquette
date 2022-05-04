@@ -185,3 +185,12 @@
 #table-setting-title{
     margin-top: 120px;
 }
+
+#table-setting-text{
+    font-size: 22px;
+}
+
+.basic-rules-title{
+    font-size: 24px;
+    font-weight: normal;
+}
