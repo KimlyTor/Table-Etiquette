@@ -91,7 +91,7 @@ quiz_data = {
         "question_id": "0",
         "img": [],
         "question": "Test Your Knowledge. <br> How much do you know?",
-        "choices": ["5 question", "12 drags and drops"],
+        "choices": ["5 questions", "12 drags and drops"],
         "answer": None,
         "next_question": "1"
     },
