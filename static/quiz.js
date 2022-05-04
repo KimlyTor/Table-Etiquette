@@ -59,7 +59,7 @@ $(document).ready(function(){
          
         var ul = $('<ul class="quiz_first">');
         for (const i of list_choices) {
-            var li = $('<li>').text(i);
+            var li = $('<li align="left">').text(i);
             ul.append(li)
         }
         $("#content").append(ul);

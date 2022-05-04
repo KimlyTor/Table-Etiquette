@@ -45,7 +45,7 @@ bsc_rul_data = {
     },
     "5": {
         "rule_id": "5",
-        "title": "When Finished, Leave Your Fork and Knife Like This!",
+        "title": "When Finished, Leave Your Fork and Knife Vertically Like This!",
         "img": ["7.png"],
         "text": [],
         "next_rule": "6",
@@ -59,7 +59,7 @@ bsc_rul_data = {
                  "Start at the Outside and Work Your Way In",
                  "Put Napkin on Your Lap",
                  "Wait for Everyone to be Served",
-                 "When Finished, Leave Your Fork and Knife Diagonally"],
+                 "When Finished, Leave Your Fork and Knife Vertically"],
         "next_rule": None,
         "prev_rule": "5"
     }
@@ -91,7 +91,7 @@ quiz_data = {
         "question_id": "0",
         "img": [],
         "question": "Test Your Knowledge. <br> How much do you know?",
-        "choices": ["5 question", "1 drag and drop"],
+        "choices": ["5 question", "12 drags and drops"],
         "answer": None,
         "next_question": "1"
     },
