@@ -54,6 +54,8 @@ $(document).ready(function(){
 
 
     if(id == 0){
+
+        $("#body-container").addClass("quiz_first_page");
         var q_text = $("<h2>").html(`${question}`);
         $("#question").append(q_text);
          

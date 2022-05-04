@@ -173,7 +173,7 @@
 
 #finish_title{
     display: block;
-    margin-bottom: 80px;    
+    margin-top: 120px;    
 }
 
 #golden-rule{
@@ -191,6 +191,18 @@
 }
 
 .basic-rules-title{
-    font-size: 24px;
+    font-size: 22px;
     font-weight: normal;
+}
+
+.quiz_first_page{
+    margin-top: 200px;
+}
+
+.quiz_summary_text{
+    font-size: 24px;
+}
+
+#quiz_last_page{
+    margin-top: 150px;
 }
