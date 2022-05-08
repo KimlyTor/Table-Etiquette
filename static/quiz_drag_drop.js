@@ -1,17 +1,35 @@
+function SaveRecord(record){
+    $.ajax({
+        type: "POST",
+        url: "save_record",
+        dataType : "json",
+        contentType: "application/json; charset=utf-8",
+        data : JSON.stringify(record),
+        success: function(result){
+            console.log("Ajax success! score from the server ", result['data'])
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            console.log(request)
+            console.log(status)
+            console.log(error)
+        }
+    })
+}
+
 function VerifyAnswer(dict1, dict2){
     let right_answer = [];
     let wrong_answer = [];
-    let score = 0;
     $.each(dict1, function(key1, val1){
         if(val1.toLowerCase() === dict2[key1].toLowerCase()){
             right_answer.push(key1);
-            score += 1;
+            SaveRecord({"id": key1, "score": 1});
         }else{
             wrong_answer.push(key1);
+            SaveRecord({"id": key1, "score": 0});
         }
 
     })
-    console.log("Score", score)
     console.log("correctAnswer", right_answer)
     console.log("wrongAnswer", wrong_answer)
 
@@ -58,7 +76,20 @@ $(document).ready(function(){
     let list_img = data['img'];
     let list_choices = data['choices'];
     let answer = data['answer'];
-    let names = {}
+    let names = {
+        "A": "n/a",
+        "B": "n/a",
+        "C": "n/a",
+        "D": "n/a",
+        "E": "n/a",
+        "F": "n/a",
+        "G": "n/a",
+        "H": "n/a",
+        "I": "n/a",
+        "J": "n/a",
+        "K": "n/a",
+        "L": "n/a",
+    }
 
     // SET UP
 
@@ -66,7 +97,7 @@ $(document).ready(function(){
     let q_text = $("<h3>").html(`${id}: ${question}`);
     $("#question").append(q_text);
 
-    // list image and drag_drop_area
+    // list image and drop area
     if(list_img.length){
         let n = list_img.length;
         let col_wid = parseInt(12/n).toString()

@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 
 # DATA
-bsc_rul_time = {"start": None, "end": None}
+bsc_rul_time = {"start": None, "end": None, "elapsed": None}
+quiz_time = {"start": None, "end": None, "elapsed": None}
 
 bsc_rul_data = {
     "1": {
@@ -45,7 +46,7 @@ bsc_rul_data = {
     },
     "5": {
         "rule_id": "5",
-        "title": "When Finished, Leave Your Fork and Knife Like This!",
+        "title": "When Finished, Leave Your Fork and Knife Vertically Like This!",
         "img": ["7.png"],
         "text": [],
         "next_rule": "6",
@@ -59,7 +60,7 @@ bsc_rul_data = {
                  "Start at the Outside and Work Your Way In",
                  "Put Napkin on Your Lap",
                  "Wait for Everyone to be Served",
-                 "When Finished, Leave Your Fork and Knife Diagonally"],
+                 "When Finished, Leave Your Fork and Knife Vertically"],
         "next_rule": None,
         "prev_rule": "5"
     }
@@ -68,12 +69,12 @@ bsc_rul_data = {
 table_settings = {
     "1": {
         "title": "Table Setting",
-        "text": 'The golden rule, "Start at the Outside and Work Your Way In"',
+        "text": 'The golden rule, <span id="golden-rule">"Start at the Outside and Work Your Way In"<span>',
         "image": "#",
         "next_lesson": "2"
     },
     "2": {
-        "title": "Click on Each Item to See Its Name",
+        "title": "Hover on Each Item to See Its Name",
         "text": "n/a",
         "image": "/static/imgs/table_setting_1.png",
         "next_lesson": "3"
@@ -91,7 +92,7 @@ quiz_data = {
         "question_id": "0",
         "img": [],
         "question": "Test Your Knowledge. <br> How much do you know?",
-        "choices": ["5 question", "1 drag and drop"],
+        "choices": ["5 questions", "12 drags and drops"],
         "answer": None,
         "next_question": "1"
     },
@@ -184,6 +185,7 @@ def basic_rules(id):
 def start_timer():
     if bsc_rul_time["start"] is None:
         bsc_rul_time["start"] = datetime.now().timestamp()
+    print(bsc_rul_time["start"])
     return jsonify(data=bsc_rul_time["start"])
 
 
@@ -191,12 +193,38 @@ def start_timer():
 def end_timer():
     if bsc_rul_time["end"] is None:
         bsc_rul_time["end"] = datetime.now().timestamp()
-    elapsed_time = bsc_rul_time["end"] - bsc_rul_time["start"]
+    print(bsc_rul_time["end"])
 
+    if(bsc_rul_time["end"]is not None and bsc_rul_time["start"] is not None):
+        bsc_rul_time["elapsed"] = bsc_rul_time["end"] - bsc_rul_time["start"]
+    
     # Restart timer
     bsc_rul_time["end"] = None
     bsc_rul_time["start"] = None
-    return jsonify(data=elapsed_time)
+    return jsonify(data=bsc_rul_time["elapsed"] )
+
+
+@app.route('/quiz/start_timer', methods=['GET', 'POST'])
+def quiz_start_timer():
+    if quiz_time["start"] is None:
+        quiz_time["start"] = datetime.now().timestamp()
+    print(quiz_time["start"])
+    return jsonify(data=quiz_time["start"])
+
+
+@app.route('/quiz/end_timer', methods=['GET', 'POST'])
+def quiz_end_timer():
+    if quiz_time["end"] is None:
+        quiz_time["end"] = datetime.now().timestamp()
+
+    if(quiz_time["end"]is not None and quiz_time["start"] is not None):
+        quiz_time["elapsed"] = quiz_time["end"] - quiz_time["start"]
+    
+    print(quiz_time["elapsed"])
+    # Restart timer
+    quiz_time["end"] = None
+    quiz_time["start"] = None
+    return jsonify(data=quiz_time["elapsed"] )
 
 
 @app.route('/table_setting/<table_setting_id>')
@@ -214,6 +242,7 @@ def quiz(id):
 @app.route('/quiz/summary')
 def quiz_summary():
     score = calc_score()
+    user_score = {}
     return render_template('quiz_summary.html', data=score)
 
 # AJAX FUNCTIONS
@@ -222,10 +251,11 @@ def quiz_summary():
 @app.route('/quiz/save_record', methods=['GET', 'POST'])
 def save_record():
     record = request.get_json()
+    # add id and score to user_score
     user_score[record['id']] = int(record['score'])
     score = calc_score()
 
-    print(user_score)
+    print("user_score", user_score)
     return jsonify(data=score)
 
 @app.route('/quiz/drag_and_drop')

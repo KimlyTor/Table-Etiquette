@@ -4,17 +4,18 @@
 
 <script>
     let data = {{ data|tojson }}
+    console.log("score from server:" + data)
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'quiz_summary.js') }}"></script>
 
-<div class="container">
+<div class="container" id="quiz_last_page">
     <div id="title" class="row justify-content-center text-center my-3">
-        <h4>Finished!</h4>
+        <h2 id="finish_title">Finished!</h2>
     </div>
-    <div id="content" class="row justify-content-center text-center my-3">
+    <div id="content" class="row justify-content-center text-center my-3 quiz_summary_text">
     </div>
-    <div id="reaction" class="row justify-content-around text-center my-3">
+    <div id="reaction" class="row justify-content-around text-center my-4">
     </div>
 </div>
 

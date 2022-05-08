@@ -27,7 +27,7 @@ function EndTimer(){
         success: function(result){
             var t = result['data'].toFixed(2).toString()
             console.log(result['data']);
-            var time = $("<div>").html(`You've finished Learning about basic rules!! <br> The total study time is <strong>${t} seconds</strong>`);
+            var time = $("<div class='row'>").html(`You've finished Learning about basic rules!! <br> Your total study time is <strong>${t} seconds</strong>`).attr('id', 'timer').css("width", "100%");
             $("#content").append(time);
         },
         error: function(request, status, error){
@@ -43,7 +43,7 @@ function EndTimer(){
 $(document).ready(function(){
     console.log(data);
     // append title
-    var title = $("<h2>").html(`Rule ${data['rule_id']}: ${data['title']}`);
+    var title = $("<h2>").html(`<span class="basic-rules-title">Rule ${data['rule_id']}</span> : ${data['title']}`);
     $("#title").append(title);
 
     var list_img = data['img'];
@@ -58,27 +58,31 @@ $(document).ready(function(){
     if(data['rule_id'] == "6"){
         EndTimer();
 
+        //change title style a little
+        $("h2").replaceWith($("h2").html(`${data['title']}`))
         // insert content
         var ol = $("<ol>")
         for(txt in list_text){
-            ol.append($("<li align='left'>").html(list_text[txt]));
+            ol.append($("<li align='left'>").html(list_text[txt]).css({"padding":"0 0 5px 5px", "font-size": "22px"}));
         }
+        var item = $("<div class='row'>")
+        item.append(ol).css("width", "100%").css("margin-left", "100px")
         // var img = $("<img class='resize-img'>").attr("src", `/static/imgs/${list_img[0]}`).attr('alt', data['title']);
-        $("#content").append(ol)
+        $("#content").append(item).css("margin-left", "150px")
 
         // insert buttons
-        var tbl_set_btn = $("<button>").attr("class", "btn btn-primary").attr("id","next_learn_but").text("Next: Learn about Table Setting!");
+        var tbl_set_btn = $("<button>").attr("class", "btn btn-primary").attr("id","next_learn_but").text("Next: Table Setting Lesson!");
         tbl_set_btn.click(function(e){
             window.location.href = `http://127.0.0.1:5000/table_setting/1`;
             
         });
 
-        var dne_btn = $("<button>").attr("class", "btn btn-primary").attr("id","back_to_but").text("Back to Home Page");
+        var dne_btn = $("<button>").attr("class", "btn btn-primary").attr("id","back_to_but").text("Back");
         dne_btn.click(function(e){
-            window.location.href = `http://127.0.0.1:5000/`;
+            window.location.href = `http://127.0.0.1:5000/basic_rules/${data['prev_rule']}`;
         });
 
-        $("#reaction").append(tbl_set_btn, dne_btn)
+        $("#reaction").append(dne_btn, tbl_set_btn)
     }
     else{
         if ((len_img == 1) && (len_text == 0)){

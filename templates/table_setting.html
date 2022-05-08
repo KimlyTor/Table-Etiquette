@@ -14,13 +14,13 @@
         console.log(id)
     </script>
 
-    <div class="row justify-content-center my-5">
+    <div class="row justify-content-center" id="main_content">
         <div class="col-sm-auto">
-            <h1 class="font-weight-bold text-center">{{table_setting["title"]}}</h1>
+            <h1 class="text-center">{{table_setting["title"]}}</h1>
         </div>
     </div>
-    <div class="row justify-content-center my-3 ">
-        <div class="col-sm-auto col-md-auto map-image text-center">
+    <div class="row justify-content-center my-3">
+        <div class="col-sm-auto col-md-auto map-image text-center" id="content-block">
             <img  src={{table_setting['image']}} alt="table-setting-image" usemap="#Map" width="600">
             <map name="Map" id="Map">
                 <area href="#" shape="rect" class="napkin" coords="50,290,220,800" name="napkin" alt="napkin" data-key=""napkin>

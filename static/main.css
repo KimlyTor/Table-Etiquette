@@ -1,9 +1,10 @@
+
 #content img {
     width: 60%;
 }
 
 #main_content{
-    padding-top: 60px;
+    padding-top: 100px; 
 }
 
 #next-btn {
@@ -87,6 +88,7 @@
 #submit-btn{
     background-color: green;
     border-color: green;
+    margin-right: 30px;
 }
 
 #dne-btn{
@@ -164,10 +166,48 @@
    
 }
 
-
 .ui-droppable-active.ui-droppable-hover{
     background-color: rgb(238, 137, 48);
 }
 
+#finish_title{
+    display: block;
+    margin-top: 120px;    
+}
+
+#golden-rule{
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+#table-setting-title{
+    margin-top: 120px;
+}
+
+#table-setting-text{
+    font-size: 22px;
+}
+
+.basic-rules-title{
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.quiz_first_page{
+    margin-top: 200px;
+}
+
+.quiz_summary_text{
+    font-size: 24px;
+}
+
+#quiz_last_page{
+    margin-top: 150px;
+}
 
 
+#timer{
+    display: block;
+    font-size: 16px;
+}
