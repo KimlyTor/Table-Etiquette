@@ -139,7 +139,7 @@ $(document).ready(function(){
             next_btn.prop("disabled", false);
         }
         else{
-            $(`#warning_block`).html("No answer selected! Try select and Submit again!")
+            $(`#warning_block`).html("No answer selected! Select and submit again!")
         }
     });
 

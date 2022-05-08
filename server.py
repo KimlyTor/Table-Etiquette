@@ -12,7 +12,7 @@ quiz_time = {"start": None, "end": None, "elapsed": None}
 bsc_rul_data = {
     "1": {
         "rule_id": "1",
-        "title": "Don’t Put Stuffs on the Table",
+        "title": "Don’t Put Stuff on the Table",
         "img": ["1.png"],
         "text": ["Keep your <strong>elbows off the table</strong>. Putting elbows on the table is considered rude.",
                  "Don’t put your <strong>bags, sun glasses, phones</strong>, and <strong>other personal belonging</strong> on the table"],
@@ -56,7 +56,7 @@ bsc_rul_data = {
         "rule_id": "6",
         "title": "Basic Rules Review!",
         "img": ["1.png"],
-        "text": ["Don’t Put Stuffs on the Table",
+        "text": ["Don’t Put Stuff on the Table",
                  "Start at the Outside and Work Your Way In",
                  "Put Napkin on Your Lap",
                  "Wait for Everyone to be Served",
