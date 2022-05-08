@@ -1,3 +1,23 @@
+function StartTimer(){
+    $.ajax({
+        type: "POST",
+        url: "start_timer",
+        dataType : "json",
+        contentType: "application/json; charset=utf-8",
+        data : JSON.stringify({}),
+        success: function(result){
+            console.log(result['data'])
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            console.log(request)
+            console.log(status)
+            console.log(error)
+        }
+    })
+}
+
+
 function SaveRecord(record){
     $.ajax({
         type: "POST",
@@ -54,7 +74,7 @@ $(document).ready(function(){
 
 
     if(id == 0){
-
+        StartTimer()
         $("#body-container").addClass("quiz_first_page");
         var q_text = $("<h2>").html(`${question}`);
         $("#question").append(q_text);

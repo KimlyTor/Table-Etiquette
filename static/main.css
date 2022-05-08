@@ -206,3 +206,9 @@
 #quiz_last_page{
     margin-top: 150px;
 }
+
+
+#timer{
+    display: block;
+    font-size: 16px;
+}
