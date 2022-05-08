@@ -111,14 +111,17 @@
 #basic_rule_3{
     padding-top: 30px;
     font-size: 22px;
+    border-radius: 50%;
 }
 
 #table_image{
     margin-top: 50px;
+    border-radius: 50%;
 }
 
 #quiz_image{
     margin-top: 90px;
+    border-radius: 50%;
 }
 
 .quiz_first{
@@ -128,10 +131,6 @@
 .choice-btn{
     display: block !important;
 }
-/* .map-image img{
-    width: auto;
-} */
-
 
 .highlight-red{
     color: brown;
