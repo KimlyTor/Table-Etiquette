@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 # DATA
-bsc_rul_time = {"start": None, "end": None}
+bsc_rul_time = {"start": None, "end": None, "elapsed": None}
 
 bsc_rul_data = {
     "1": {
@@ -184,6 +184,7 @@ def basic_rules(id):
 def start_timer():
     if bsc_rul_time["start"] is None:
         bsc_rul_time["start"] = datetime.now().timestamp()
+    print(bsc_rul_time["start"])
     return jsonify(data=bsc_rul_time["start"])
 
 
@@ -191,12 +192,15 @@ def start_timer():
 def end_timer():
     if bsc_rul_time["end"] is None:
         bsc_rul_time["end"] = datetime.now().timestamp()
-    elapsed_time = bsc_rul_time["end"] - bsc_rul_time["start"]
+    print(bsc_rul_time["end"])
 
+    if(bsc_rul_time["end"]is not None and bsc_rul_time["start"] is not None):
+        bsc_rul_time["elapsed"] = bsc_rul_time["end"] - bsc_rul_time["start"]
+    
     # Restart timer
     bsc_rul_time["end"] = None
     bsc_rul_time["start"] = None
-    return jsonify(data=elapsed_time)
+    return jsonify(data=bsc_rul_time["elapsed"] )
 
 
 @app.route('/table_setting/<table_setting_id>')

@@ -27,7 +27,7 @@ function EndTimer(){
         success: function(result){
             var t = result['data'].toFixed(2).toString()
             console.log(result['data']);
-            var time = $("<div>").html(`You've finished Learning about basic rules!! <br> The total study time is <strong>${t} seconds</strong>`);
+            var time = $("<div class='row'>").html(`You've finished Learning about basic rules!! <br> Your total study time is <strong>${t} seconds</strong>`).attr('id', 'timer').css("width", "100%");
             $("#content").append(time);
         },
         error: function(request, status, error){
@@ -51,12 +51,12 @@ $(document).ready(function(){
     var list_text = data['text'];
     var len_text = list_text.length;
 
-    // if(data['rule_id'] == "1") {
-    //     StartTimer();
-    // }
+    if(data['rule_id'] == "1") {
+        StartTimer();
+    }
     
     if(data['rule_id'] == "6"){
-        // EndTimer();
+        EndTimer();
 
         //change title style a little
         $("h2").replaceWith($("h2").html(`${data['title']}`))
@@ -65,8 +65,10 @@ $(document).ready(function(){
         for(txt in list_text){
             ol.append($("<li align='left'>").html(list_text[txt]).css({"padding":"0 0 5px 5px", "font-size": "22px"}));
         }
+        var item = $("<div class='row'>")
+        item.append(ol).css("width", "100%").css("margin-left", "100px")
         // var img = $("<img class='resize-img'>").attr("src", `/static/imgs/${list_img[0]}`).attr('alt', data['title']);
-        $("#content").append(ol).css("margin-left", "150px")
+        $("#content").append(item).css("margin-left", "150px")
 
         // insert buttons
         var tbl_set_btn = $("<button>").attr("class", "btn btn-primary").attr("id","next_learn_but").text("Next: Table Setting Lesson!");
