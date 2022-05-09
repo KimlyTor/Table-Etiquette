@@ -46,7 +46,7 @@ function VerifyAnswer(id, n, answer_index){
         none_checked = false;
         console.log($(`#div-${answer_index}`));
         $(`#div-${answer_index}`).append("<span class='highlight-green'>    Correct!</span>");
-        SaveRecord({"id": id, "score": 1});
+        SaveRecord({"id": id, "score": 2});
     }
     else{ // Answer is wrong
         for (let c = 0; c < n; c++) {

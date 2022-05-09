@@ -23,9 +23,10 @@ function EndTimer(){
 
 $(document).ready(function(){
     EndTimer();
-    var c1 = '<div class="col-sm-12"><p>Correct: <b>'+ data+ '</b></p></div>';
-    var c0 = '<div class="col-sm-12"><p>Incorrect: ' + (17-parseInt(data)).toString()+'</p></div>';
-    var sum = '<div class="col-sm-12"><p>Total Score: ' + "<b>"+ data+"</b> / 17"+'</p></div>';
+    console.log(data)
+    var c1 = '<div class="col-sm-12"><p>Correct: <b>'+ (data['correct']).toString()+ '</b></p></div>';
+    var c0 = '<div class="col-sm-12"><p>Incorrect: ' + (data['incorrect']).toString()+'</p></div>';
+    var sum = '<div class="col-sm-12"><p>Total Score: ' + "<b>"+ (data['score']).toString()+"</b> / " + (data['total_score']).toString() +'</p></div>';
     $("#content").append(c1, c0, sum);
 
     var dne_btn = $("<button>").attr("id", "dne-btn").attr("class", "btn btn-primary").text("Back to Homepage");
