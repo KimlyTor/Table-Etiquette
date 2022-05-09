@@ -159,16 +159,26 @@ quiz_data = {
     }
 }
 
-user_score = {}
-
+user_score_raw = {}
+user_score_stat = {}
+total_score = 22
 
 def calc_score():
+    print(user_score_raw)
     score = 0
-    for k, v in user_score.items():
+    correct = 0
+    incorrect = 0
+    for k, v in user_score_raw.items():
         score += v
-    return score
-
-# ROUTES
+        if (v):
+            correct = correct + 1
+        else:
+            incorrect = incorrect + 1
+    user_score_stat = {"correct": correct, 
+            "incorrect": incorrect,
+            "score": score,
+            "total_score": total_score}
+    return user_score_stat
 
 
 @app.route('/')
@@ -241,22 +251,19 @@ def quiz(id):
 
 @app.route('/quiz/summary')
 def quiz_summary():
-    score = calc_score()
-    user_score = {}
-    return render_template('quiz_summary.html', data=score)
-
-# AJAX FUNCTIONS
+    # calculate statistics
+    data = calc_score()
+    user_score_raw = {}
+    return render_template('quiz_summary.html', data=data)
 
 
 @app.route('/quiz/save_record', methods=['GET', 'POST'])
 def save_record():
     record = request.get_json()
     # add id and score to user_score
-    user_score[record['id']] = int(record['score'])
+    user_score_raw[record['id']] = int(record['score'])
     score = calc_score()
-
-    print("user_score", user_score)
-    return jsonify(data=score)
+    return jsonify(data=score['score'])
 
 @app.route('/quiz/drag_and_drop')
 def quiz_drag_drop():
