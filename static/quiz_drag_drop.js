@@ -17,16 +17,16 @@ function SaveRecord(record){
     })
 }
 
-function VerifyAnswer(dict1, dict2){
+function VerifyAnswer(dict1, dict2, dict3){
     let right_answer = [];
     let wrong_answer = [];
     $.each(dict1, function(key1, val1){
         if(val1.toLowerCase() === dict2[key1].toLowerCase()){
             right_answer.push(key1);
-            SaveRecord({"id": key1, "score": 1});
+            SaveRecord({"id": key1, "score": 1, "full_score": 1});
         }else{
             wrong_answer.push(key1);
-            SaveRecord({"id": key1, "score": 0});
+            SaveRecord({"id": key1, "score": 0, "full_score": 1});
         }
 
     })
@@ -70,12 +70,20 @@ function update_drag_drop_key_value(dict){
 
 
 $(document).ready(function(){
-    console.log(data);
-    let id = data['question_id']
-    let question = data['question']
-    let list_img = data['img'];
-    let list_choices = data['choices'];
-    let answer = data['answer'];
+
+    var quiz_data = data['quiz_data']
+    let id = quiz_data['question_id']
+    let question = quiz_data['question']
+    let list_img = quiz_data['img'];
+    let list_choices = quiz_data['choices'];
+    let answer = quiz_data['answer'];
+    //let list_score = quiz_data['score']
+    let next_question = quiz_data['next_question']
+
+    var user_score = data['user_score'];
+    var curr_score = user_score['score'];
+    var total_score = user_score['total_score'];
+
     let names = {
         "A": "n/a",
         "B": "n/a",
@@ -92,17 +100,18 @@ $(document).ready(function(){
     }
 
     // SET UP
-
-    // write question
-    let q_text = $("<h3>").html(`${id}: ${question}`);
-    $("#question").append(q_text);
+    // Fix header
+    var question_number  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Question: ${id}`));
+    var current_score  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Curent Score: ${curr_score}/${total_score}`));
+    var q_text = $("<div class='col-md-12'>").append($("<h5>").html(`${question}`));
+    $("#question").append(question_number, current_score, q_text);
 
     // list image and drop area
     if(list_img.length){
         let n = list_img.length;
         let col_wid = parseInt(12/n).toString()
         for (const i of list_img) {
-            let img = $("<img>").attr("src", `${i}`).addClass("img-fluid w-100").attr({'alt':data['question']});
+            let img = $("<img>").attr("src", `${i}`).addClass("img-fluid w-100").attr({'alt': question});
             let panel = $(`<div class='col-md-6 px-0'>`).append(img);
             let drag_drop_area = $(`<div class='col-md-4 mx-4'>`).append(
                 // Labels and Names header
@@ -155,7 +164,7 @@ $(document).ready(function(){
     });
     let next_btn = $("<button>").attr("id", "next_btn").attr("class", "btn btn-primary").text("Next");
     next_btn.click(function(e){
-        window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
+        window.location.href = `http://127.0.0.1:5000/quiz/${next_question}`;
     });
     next_btn.prop("disabled", true);
     $("#reaction-drag-drop").append(submit_btn, next_btn);

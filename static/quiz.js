@@ -37,7 +37,7 @@ function SaveRecord(record){
     })
 }
 
-function VerifyAnswer(id, n, answer_index){
+function VerifyAnswer(id, n, answer_index, score){
     // verify answer
     var none_checked = true;
     var ans = $(`#${answer_index}`);
@@ -46,7 +46,7 @@ function VerifyAnswer(id, n, answer_index){
         none_checked = false;
         console.log($(`#div-${answer_index}`));
         $(`#div-${answer_index}`).append("<span class='highlight-green'>    Correct!</span>");
-        SaveRecord({"id": id, "score": 2});
+        SaveRecord({"id": id, "score": score, "full_score": score});
     }
     else{ // Answer is wrong
         for (let c = 0; c < n; c++) {
@@ -57,19 +57,27 @@ function VerifyAnswer(id, n, answer_index){
                 $(`#div-${id}-${c}`).append("<span class='highlight-red'>   Wrong.</span>")
             }
         }
-        SaveRecord({"id": id, "score": 0});
+        SaveRecord({"id": id, "score": 0, "full_score": score});
     }
 
     return none_checked;
 }
 
 $(document).ready(function(){
-    // console.log(data);
-    var id = data['question_id']
-    var question = data['question']
-    var list_img = data['img'];
-    var list_choices = data['choices'];
-    var answer = data['answer'];
+    console.log(data);
+    var quiz_data = data['quiz_data'];
+    var id = quiz_data['question_id'];
+    var question = quiz_data['question'];
+    var list_img = quiz_data['img'];
+    var list_choices = quiz_data['choices'];
+    var answer = quiz_data['answer'];
+    var score = quiz_data['score'];
+    var next_question = quiz_data['next_question']
+
+    var user_score = data['user_score'];
+    var curr_score = user_score['score'];
+    var total_score = user_score['total_score'];
+
     var answer_index= null;
 
 
@@ -88,22 +96,24 @@ $(document).ready(function(){
 
         var start_btn = $("<button>").attr("id", "start_btn").attr("class", "btn btn-primary").text("Start Quiz");
         start_btn.click(function(e){
-            window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
+            window.location.href = `http://127.0.0.1:5000/quiz/${next_question}`;
         });
         $("#reaction").append(submit_btn, start_btn);
         return;
     }
 
-    // write question
-    var q_text = $("<h5>").html(`Question ${id}: ${question}`);
-    $("#question").append(q_text);
+    // Fix header
+    var question_number  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Question: ${id}/5`));
+    var current_score  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Curent Score: ${curr_score}/${total_score}`));
+    var q_text = $("<div class='col-md-12'>").append($("<h5>").html(`${question}`));
+    $("#question").append(question_number, current_score, q_text);
 
     // list images
     if(list_img.length){
         var n = list_img.length;
         var col_wid = parseInt(12/n).toString()
         for (const i of list_img) {
-            var img = $("<img>").attr("src", `${i}`).attr('alt', data['question']);
+            var img = $("<img>").attr("src", `${i}`).attr('alt', question);
             var panel = $(`<div class='col-md-${col_wid}'>`).append(img);
             $("#content").append(panel);
         }
@@ -133,7 +143,7 @@ $(document).ready(function(){
     var submit_btn = $("<button>").attr("id", "submit-btn").attr("class", "btn btn-primary").text("Submit Answer");
     submit_btn.click(function(e){
         $(`#warning_block`).empty();
-        var none_checked = VerifyAnswer(id, list_choices.length, answer_index);
+        var none_checked = VerifyAnswer(id, list_choices.length, answer_index, score);
         if(!none_checked){
             submit_btn.prop("disabled", true);
             next_btn.prop("disabled", false);
@@ -145,7 +155,7 @@ $(document).ready(function(){
 
     var next_btn = $("<button>").attr("id", "next_btn").attr("class", "btn btn-primary").text("Next");
     next_btn.click(function(e){
-        window.location.href = `http://127.0.0.1:5000/quiz/${data['next_question']}`;
+        window.location.href = `http://127.0.0.1:5000/quiz/${next_question}`;
     });
     next_btn.prop("disabled", true);
     var col1= $("<div class='col-md-6 justify-content-around text-center'>").append(warning_block)
