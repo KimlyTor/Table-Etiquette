@@ -1,6 +1,14 @@
 
 #content img {
-    width: 60%;
+    width: 350px;
+}
+
+.img-4 {
+    width: 200px !important;
+}
+
+.img-6 {
+    width: 300px !important;
 }
 
 #main_content{
@@ -86,8 +94,8 @@
 }
 
 #submit-btn{
-    background-color: green;
-    border-color: green;
+    background-color: #45794f;
+    border-color: #45794f;
     margin-right: 30px;
 }
 

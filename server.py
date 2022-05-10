@@ -92,7 +92,7 @@ quiz_data = {
         "question_id": "0",
         "img": [],
         "question": "Test Your Knowledge. <br> How much do you know?",
-        "choices": ["5 questions", "12 drags and drops"],
+        "choices": ["5 multiple choice questions, 2 points each.", "12 drags and drops, 1 point each."],
         "answer": None,
         "next_question": "1",
         "score": 2,
@@ -127,7 +127,7 @@ quiz_data = {
     "4": {
         "question_id": "4",
         "img": ["/static/imgs/quiz4_img.png", ],
-        "question": "You and your friends are in a restaurant having dinner torgether and your're really hungry. All of your food have been sered except the order for Abby who is seating next to you. What is the polite way to behave in this situation?",
+        "question": "You and your friends are in a restaurant having dinner torgether and your're really hungry. All of your food have been served except the order for Abby who is seating next to you. What is the polite way to behave in this situation?",
         "choices": ["Start eating first",  "Ask Abby if it's okay to start eating first", "Wait for Abby's dish to be served"],
         "answer": "Wait for Abby's dish to be served",
         "next_question": "5",

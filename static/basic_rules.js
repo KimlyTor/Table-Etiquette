@@ -27,7 +27,7 @@ function EndTimer(){
         success: function(result){
             var t = result['data'].toFixed(2).toString()
             console.log(result['data']);
-            var time = $("<div class='row'>").html(`You've finished Learning about basic rules!! <br> Your total study time is <strong>${t} seconds</strong>`).attr('id', 'timer').css("width", "100%");
+            var time = $("<div class='row'>").append($("<span class='quiz-info'>").html(`Your Total Study Time: <strong>${t} seconds</strong>`));
             $("#content").append(time);
         },
         error: function(request, status, error){
@@ -66,18 +66,17 @@ $(document).ready(function(){
             ol.append($("<li align='left'>").html(list_text[txt]).css({"padding":"0 0 5px 5px", "font-size": "22px"}));
         }
         var item = $("<div class='row'>")
-        item.append(ol).css("width", "100%").css("margin-left", "100px")
-        // var img = $("<img class='resize-img'>").attr("src", `/static/imgs/${list_img[0]}`).attr('alt', data['title']);
-        $("#content").append(item).css("margin-left", "150px")
+        item.append(ol).css("width", "100%").css("margin-left", "25%")
+        $("#content").append(item)
 
         // insert buttons
-        var tbl_set_btn = $("<button>").attr("class", "btn btn-primary").attr("id","next_learn_but").text("Next: Table Setting Lesson!");
+        var tbl_set_btn = $("<button>").attr("class", "btn btn-primary").attr("id","next_learn_but").text("Next: Table Setting Lesson >");
         tbl_set_btn.click(function(e){
             window.location.href = `http://127.0.0.1:5000/table_setting/1`;
             
         });
 
-        var dne_btn = $("<button>").attr("class", "btn btn-primary").attr("id","back_to_but").text("Back");
+        var dne_btn = $("<button>").attr("class", "btn btn-primary").attr("id","back_to_but").text("< Back");
         dne_btn.click(function(e){
             window.location.href = `http://127.0.0.1:5000/basic_rules/${data['prev_rule']}`;
         });
@@ -93,7 +92,7 @@ $(document).ready(function(){
             var n = len_img;
             var col_wid = parseInt(12/n).toString()
             for (let i = 0; i < n; i++) {
-                const img = $("<img width='300' height='300'>").attr("src", `/static/imgs/${list_img[i]}`).attr('alt', data['title']);
+                const img = $(`<img class='img-${col_wid}'>`).attr("src", `/static/imgs/${list_img[i]}`).attr('alt', data['title']);
                 const txt = $("<div id='basic_rule_3'>").html(list_text[i]);
                 var panel = $(`<div class='col-md-${col_wid}'>`).append(img, txt);
                 $("#content").append(panel);
@@ -101,7 +100,7 @@ $(document).ready(function(){
         }
         else if((len_img == 1) && (len_text > 0)){
             // left panel
-            var img = $("<img>").attr("src", `/static/imgs/${list_img[0]}`).attr('alt', data['title']);
+            var img = $("<img class='img-6'>").attr("src", `/static/imgs/${list_img[0]}`).attr('alt', data['title']);
             var panel_l = $("<div class='col-md-6'>").append(img);
             $("#content").append(panel_l)
     
@@ -116,16 +115,23 @@ $(document).ready(function(){
         
                 
         // Append Buttons
+        var back_btn = $("<button>").attr("class", "btn btn-primary").attr("id","back_but");
         if (data['prev_rule'] != null){
-            var back_btn = $("<button>").attr("class", "btn btn-primary").attr("id","back_but").text("Back");
+            back_btn.text("< Back");
             back_btn.click(function(e){
                 window.location.href = `http://127.0.0.1:5000/basic_rules/${data['prev_rule']}`;
             });    
-            $("#reaction").append(back_btn)
         }
+        else{
+            back_btn.text("< Back to Homepage");
+            back_btn.click(function(e){
+                window.location.href = `http://127.0.0.1:5000/`;
+            });    
+        }
+        $("#reaction").append(back_btn);
 
         if (data['next_rule'] != null){
-            var next_btn = $("<button>").attr("class", "btn btn-primary").attr("id","next_but").text("Next");
+            var next_btn = $("<button>").attr("class", "btn btn-primary").attr("id","next_but").text("Next >");
             next_btn.click(function(e){
                 window.location.href = `http://127.0.0.1:5000/basic_rules/${data['next_rule']}`;
             });
