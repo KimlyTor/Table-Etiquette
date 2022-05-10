@@ -145,7 +145,7 @@ quiz_data = {
     "drag_and_drop":{
         "question_id": "Drag and Drop",
         "img": ["/static/imgs/drag_and_drop_quiz.png"],
-        "question": "Match the names to the correct labels",
+        "question": "Match the names to the correct labels.<br> If you make a mistake, you can refresh the page to reset the items!",
         "choices": ["Napkin", "Salad Fork", "Dinner Fork", "Soup spoon", "Dinner spoon", "Salad Plate", "Dinner Plate", "Bread plate and butter knife", "Dessert spoon and fork", "Wine glass", "Water glass", "Dinner knife"],
         "answer": {
             "A":"Dinner plate", 
