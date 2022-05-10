@@ -94,7 +94,8 @@ quiz_data = {
         "question": "Test Your Knowledge. <br> How much do you know?",
         "choices": ["5 questions", "12 drags and drops"],
         "answer": None,
-        "next_question": "1"
+        "next_question": "1",
+        "score": 2,
     },
     "1": {
         "question_id": "1",
@@ -102,7 +103,8 @@ quiz_data = {
         "question": "Where do you put the napkin when you leave the table for bathroom break?",
         "choices": ["Bring it with you", "On the plate", "On your lap", "On the chair"],
         "answer": "On the chair",
-        "next_question": "2"
+        "next_question": "2",
+        "score": 2,
     },
     "2": {
         "question_id": "2",
@@ -110,7 +112,8 @@ quiz_data = {
         "question": "What's the golden rule of the table setting?",
         "choices": ["Pick any for or spoon available",  "Big utensils first, small utensils second", "Start at the outside and work your way in", "There is no rule"],
         "answer": "Start at the outside and work your way in",
-        "next_question": "3"
+        "next_question": "3",
+        "score": 2,
     },
     "3": {
         "question_id": "3",
@@ -118,7 +121,8 @@ quiz_data = {
         "question": "You are served fried calamari as an appetizer, which utensil do you use?",
         "choices": ["A", "B", "C", "D", "E", "None of the above"],
         "answer":  "A",
-        "next_question": "4"
+        "next_question": "4",
+        "score": 2,
     },
     "4": {
         "question_id": "4",
@@ -126,7 +130,8 @@ quiz_data = {
         "question": "You and your friends are in a restaurant having dinner torgether and your're really hungry. All of your food have been sered except the order for Abby who is seating next to you. What is the polite way to behave in this situation?",
         "choices": ["Start eating first",  "Ask Abby if it's okay to start eating first", "Wait for Abby's dish to be served"],
         "answer": "Wait for Abby's dish to be served",
-        "next_question": "5"
+        "next_question": "5",
+        "score": 2,
     },
     "5": {
         "question_id": "5",
@@ -134,7 +139,8 @@ quiz_data = {
         "question": "Which fork is which? Choose the correct labels.",
         "choices": ["A", "B", "C"],
         "answer": "B",
-        "next_question": "drag_and_drop"
+        "next_question": "drag_and_drop",
+        "score": 2,
     },
     "drag_and_drop":{
         "question_id": "Drag and Drop",
@@ -155,29 +161,33 @@ quiz_data = {
             "K":"Dinner spoon",
             "L":"Water glass",
          },
-        "next_question": "summary"
+        "next_question": "summary",
+        "score": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     }
 }
 
 user_score_raw = {}
-user_score_stat = {}
-total_score = 22
 
 def calc_score():
     print(user_score_raw)
     score = 0
     correct = 0
     incorrect = 0
-    for k, v in user_score_raw.items():
-        score += v
-        if (v):
-            correct = correct + 1
+    total_score = 0
+    for k, t in user_score_raw.items():
+        print(k, t)
+        score += t[0]
+        total_score += t[1]
+        if (t[0]):
+            correct += 1
         else:
-            incorrect = incorrect + 1
-    user_score_stat = {"correct": correct, 
+            incorrect += 1
+    user_score_stat = {
+            "correct": correct, 
             "incorrect": incorrect,
             "score": score,
-            "total_score": total_score}
+            "total_score": total_score
+        }
     return user_score_stat
 
 
@@ -244,30 +254,35 @@ def table_setting(table_setting_id):
     return render_template('table_setting.html', table_setting=table_setting, id=id)
 
 
+@app.route('/quiz/save_record', methods=['GET', 'POST'])
+def save_record():
+    record = request.get_json()
+    # add id and score to user_score
+    user_score_raw[record['id']] = (int(record['score']), int(record['full_score']))
+    score = calc_score()
+    return jsonify(data=score['score'])
+
+
 @app.route('/quiz/<id>')
 def quiz(id):
-    return render_template('quiz.html', data=quiz_data[str(id)])
+    if int(id) == 0:
+        user_score_raw.clear()
+    user_score_stat = calc_score()
+    return render_template('quiz.html', data={"quiz_data": quiz_data[str(id)], "user_score": user_score_stat})
+
+
+@app.route('/quiz/drag_and_drop')
+def quiz_drag_drop():
+    user_score_stat = calc_score()
+    return render_template('quiz_drag_drop.html', data={"quiz_data": quiz_data["drag_and_drop"], "user_score": user_score_stat})
 
 
 @app.route('/quiz/summary')
 def quiz_summary():
     # calculate statistics
     data = calc_score()
-    user_score_raw = {}
+    user_score_raw.clear()
     return render_template('quiz_summary.html', data=data)
-
-
-@app.route('/quiz/save_record', methods=['GET', 'POST'])
-def save_record():
-    record = request.get_json()
-    # add id and score to user_score
-    user_score_raw[record['id']] = int(record['score'])
-    score = calc_score()
-    return jsonify(data=score['score'])
-
-@app.route('/quiz/drag_and_drop')
-def quiz_drag_drop():
-    return render_template('quiz_drag_drop.html', data=quiz_data["drag_and_drop"])
 
 
 if __name__ == '__main__':
