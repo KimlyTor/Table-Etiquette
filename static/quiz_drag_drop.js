@@ -103,7 +103,7 @@ $(document).ready(function(){
     // Fix header
     var question_number  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Question: ${id}`));
     var current_score  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Curent Score: ${curr_score}/${total_score}`));
-    var q_text = $("<div class='col-md-12'>").append($("<h5>").html(`${question}`));
+    var q_text = $("<div class='col-md-12'>").append($("<h3>").html(`${question}`));
     $("#question").append(question_number, current_score, q_text);
 
     // list image and drop area

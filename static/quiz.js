@@ -105,7 +105,7 @@ $(document).ready(function(){
     // Fix header
     var question_number  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Question: ${id}/5`));
     var current_score  = $("<div class='col-md-6'>").append($("<span class='quiz-info'>").html(`Curent Score: ${curr_score}/${total_score}`));
-    var q_text = $("<div class='col-md-12'>").append($("<h5>").html(`${question}`));
+    var q_text = $("<div class='col-md-12'>").append($("<h3>").html(`${question}`));
     $("#question").append(question_number, current_score, q_text);
 
     // list images
@@ -113,7 +113,7 @@ $(document).ready(function(){
         var n = list_img.length;
         var col_wid = parseInt(12/n).toString()
         for (const i of list_img) {
-            var img = $("<img>").attr("src", `${i}`).attr('alt', question);
+            var img = $(`<img class='img-${col_wid}'>`).attr("src", `${i}`).attr('alt', question);
             var panel = $(`<div class='col-md-${col_wid}'>`).append(img);
             $("#content").append(panel);
         }
