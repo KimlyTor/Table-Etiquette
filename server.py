@@ -13,7 +13,7 @@ bsc_rul_data = {
     "1": {
         "rule_id": "1",
         "title": "Don’t Put Stuff on the Table",
-        "img": ["1.png"],
+        "img": ["8.jpeg"],
         "text": ["Keep your <strong>elbows off the table</strong>. Putting elbows on the table is considered rude.",
                  "Don’t put your <strong>bags, sun glasses, phones</strong>, and <strong>other personal belonging</strong> on the table"],
         "next_rule": "2",
@@ -31,8 +31,8 @@ bsc_rul_data = {
         "rule_id": "3",
         "title": "Put Napkin on Your Lap",
         "img": ["4.png", "5.png"],
-        "text": ["Fold your napkin in half and place it <strong>on your lap</strong>. Keep it there <strong>while you’re eating</strong>",
-                 "Leave the napkin <strong>on the chair</strong> if you would like <strong>leave the table</strong> for a moment"],
+        "text": ["1.  Fold your napkin in half and place it <strong>on your lap</strong>. Keep it there <strong>while you’re eating.</strong>",
+                 "2.  Leave the napkin <strong>on the chair</strong> if you would like <strong>leave the table</strong> for a moment"],
         "next_rule": "4",
         "prev_rule": "2"
     },
@@ -47,7 +47,7 @@ bsc_rul_data = {
     "5": {
         "rule_id": "5",
         "title": "When Finished, Leave Your Fork and Knife Vertically Like This!",
-        "img": ["7.png"],
+        "img": ["7.jpeg"],
         "text": [],
         "next_rule": "6",
         "prev_rule": "4"

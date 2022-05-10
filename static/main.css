@@ -1,6 +1,11 @@
+body {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 
 #content img {
     width: 450px;
+    height: 350px;
 }
 
 .img-4 {
@@ -8,7 +13,8 @@
 }
 
 .img-6 {
-    width: 300px !important;
+    width: 350px !important;
+    height: 250px !important;
 }
 
 #main_content{
